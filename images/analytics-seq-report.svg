@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="850" viewBox="0 0 1240 850" role="img" aria-labelledby="title desc">
+  <title id="title">FIG-52 Generate a progress report</title>
+  <desc id="desc">UML sequence diagram. The user opens a report. The user interface calls getReport on the Analytics Service (C-50), which checks the report cache. On a cache hit the cached report is returned. Otherwise C-50 asks the Period Calculator (C-51) for reporting periods, retrieves time records from the Time Entry Repository (C-05) and goals and status periods from the Goal Manager, has C-51 group records into daily totals, asks the calculators (C-52 to C-54) for period summaries, statistics, and the projection, asks the Chart and Summary Builder (C-55) for chart series and a written summary, stores the report in the cache, and returns it to the user interface, which displays it.</desc>
+  <defs>
+    <marker id="filled" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4f6079" /></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5" fill="none" stroke="#4f6079" stroke-width="1.4" /></marker>
+  </defs>
+  <rect width="1240" height="850" fill="#ffffff" />
+  <circle cx="70" cy="38" r="8" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="70,46 70,64" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="58,53 82,53" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="60,76 70,64 80,76" fill="none" stroke="#183454" stroke-width="2" />
+  <text x="70" y="94" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">User</text>
+  <line x1="70" y1="100" x2="70" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="143.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="205" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">User</text>
+  <text x="205" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Interface</text>
+  <line x1="205" y1="80" x2="205" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="283.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="345" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-50</text>
+  <text x="345" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Analytics Service</text>
+  <line x1="345" y1="80" x2="345" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="423.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="485" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">D3</text>
+  <text x="485" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Report Cache</text>
+  <line x1="485" y1="80" x2="485" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="558.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="620" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-51</text>
+  <text x="620" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Period Calculator</text>
+  <line x1="620" y1="80" x2="620" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="698.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="760" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-05</text>
+  <text x="760" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Entry Repository</text>
+  <line x1="760" y1="80" x2="760" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="833.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="895" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-30</text>
+  <text x="895" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Goal Manager</text>
+  <line x1="895" y1="80" x2="895" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="968.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="1030" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-52 to C-54</text>
+  <text x="1030" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Calculators</text>
+  <line x1="1030" y1="80" x2="1030" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="1103.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="1165" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-55</text>
+  <text x="1165" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Chart &amp; Summary</text>
+  <line x1="1165" y1="80" x2="1165" y2="830" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="199" y="121" width="12" height="649" rx="0" fill="#dfe8f5" stroke="#2c5d95" stroke-width="1.4" />
+  <rect x="339" y="155" width="12" height="580" rx="0" fill="#dfe8f5" stroke="#2c5d95" stroke-width="1.4" />
+  <polyline points="76,125 199,125" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="137.5" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">open report view</text>
+  <polyline points="211,159 339,159" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="275.0" y="153" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">getReport(req)</text>
+  <polyline points="351,193 479,193" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="415.0" y="187" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">lookup(key)</text>
+  <polyline points="479,257 351,257" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="415.0" y="251" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">cached report</text>
+  <polyline points="351,317 614,317" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="482.5" y="311" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">resolvePeriods(req)</text>
+  <polyline points="614,351 351,351" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="482.5" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">periods</text>
+  <polyline points="351,385 754,385" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="552.5" y="379" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">findRecords(activity, start, end)</text>
+  <polyline points="754,419 351,419" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="552.5" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">time records</text>
+  <polyline points="351,453 889,453" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="620.0" y="447" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">getGoalHistory(activity)</text>
+  <polyline points="889,487 351,487" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="620.0" y="481" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">goals, status periods</text>
+  <polyline points="351,521 614,521" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="482.5" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">bucket(records, periods)</text>
+  <polyline points="614,555 351,555" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="482.5" y="549" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">daily totals</text>
+  <polyline points="351,589 1024,589" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="687.5" y="583" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">compute(totals, goals, req)</text>
+  <polyline points="1024,623 351,623" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="687.5" y="617" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">summaries, statistics, projection</text>
+  <polyline points="351,657 1159,657" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="755.0" y="651" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">build(reportData)</text>
+  <polyline points="1159,691 351,691" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="755.0" y="685" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">chart series, text summary</text>
+  <polyline points="351,725 479,725" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="415.0" y="719" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">store(key, report)</text>
+  <rect x="285" y="211" width="943" height="532" rx="0" fill="none" stroke="#183454" stroke-width="1.5" />
+  <polygon points="285,211 321,211 321,225 313,233 285,233" fill="#ffffff" stroke="#183454" stroke-width="1.5" />
+  <text x="291" y="227" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#183454">alt</text>
+  <text x="329" y="227" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#183454" font-style="italic">[cache hit]</text>
+  <line x1="285" y1="277" x2="1228" y2="277" stroke="#183454" stroke-width="1.5" stroke-dasharray="8 5" />
+  <text x="293" y="293" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#183454" font-style="italic">[cache miss]</text>
+  <polyline points="339,777 211,777" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="275.0" y="771" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">ProgressReport</text>
+  <polyline points="199,811 76,811" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="137.5" y="805" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">chart, totals, summary</text>
+</svg>

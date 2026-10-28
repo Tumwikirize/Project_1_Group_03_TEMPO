@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="570" viewBox="0 0 1240 570" role="img" aria-labelledby="title desc">
+  <title id="title">TEMPO UML Use-Case Diagram</title>
+  <desc id="desc">The same individual user is drawn at each edge to distinguish goal-related and time/reporting use cases within TEMPO.</desc>
+  <rect width="1240" height="570" fill="#ffffff" />
+  <rect x="177" y="28" width="886" height="514" rx="3" fill="none" stroke="#183454" stroke-width="2.2" />
+  <text x="620" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#183454">TEMPO system boundary</text>
+  <circle cx="82" cy="198" r="17" fill="none" stroke="#193454" stroke-width="3" />
+  <line x1="82" y1="215" x2="82" y2="277" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="42" y1="243" x2="122" y2="243" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="82" y1="277" x2="47" y2="314" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="82" y1="277" x2="117" y2="314" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <text x="82" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#24364e">Individual user</text>
+  <circle cx="1162" cy="198" r="17" fill="none" stroke="#193454" stroke-width="3" />
+  <line x1="1162" y1="215" x2="1162" y2="277" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="1122" y1="243" x2="1202" y2="243" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="1162" y1="277" x2="1127" y2="314" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="1162" y1="277" x2="1197" y2="314" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <text x="1162" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#24364e">Individual user</text>
+  <line x1="119" y1="246" x2="245" y2="105" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="389" cy="105" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="389" y="101" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="389" dy="0">Create / rename</tspan>
+    <tspan x="389" dy="20">an activity</tspan>
+  </text>
+  <line x1="119" y1="246" x2="245" y2="202" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="389" cy="202" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="389" y="198" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="389" dy="0">Set daily or</tspan>
+    <tspan x="389" dy="20">weekly target</tspan>
+  </text>
+  <line x1="119" y1="246" x2="245" y2="299" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="389" cy="299" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="389" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Modify a goal</text>
+  <line x1="119" y1="246" x2="245" y2="396" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="389" cy="396" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="389" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="389" dy="0">Suspend / resume</tspan>
+    <tspan x="389" dy="20">a goal</tspan>
+  </text>
+  <line x1="119" y1="246" x2="245" y2="493" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="389" cy="493" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="389" y="489" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="389" dy="0">Archive or delete</tspan>
+    <tspan x="389" dy="20">a goal</tspan>
+  </text>
+  <line x1="1125" y1="246" x2="996" y2="105" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="852" cy="105" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="852" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Add time record</text>
+  <line x1="1125" y1="246" x2="996" y2="202" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="852" cy="202" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="852" y="198" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="852" dy="0">Edit or delete</tspan>
+    <tspan x="852" dy="20">time record</tspan>
+  </text>
+  <line x1="1125" y1="246" x2="996" y2="299" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="852" cy="299" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="852" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="852" dy="0">Review recorded</tspan>
+    <tspan x="852" dy="20">history</tspan>
+  </text>
+  <line x1="1125" y1="246" x2="996" y2="396" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="852" cy="396" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="852" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="852" dy="0">Compare progress</tspan>
+    <tspan x="852" dy="20">with target</tspan>
+  </text>
+  <line x1="1125" y1="246" x2="996" y2="493" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="852" cy="493" rx="144" ry="29" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="852" y="489" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">
+    <tspan x="852" dy="0">View trends, averages,</tspan>
+    <tspan x="852" dy="20">and projection</tspan>
+  </text>
+</svg>

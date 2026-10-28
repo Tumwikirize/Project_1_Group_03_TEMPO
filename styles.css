@@ -1,0 +1,194 @@
+body {
+  background-color: #f5f7fb;
+  color: #26354d;
+  line-height: 1.6;
+}
+
+a {
+  color: #315fcb;
+}
+
+a:hover {
+  color: #2347a1;
+}
+
+.site-nav {
+  background-color: #14243e;
+}
+
+.site-nav .navbar-brand {
+  font-weight: bold;
+}
+
+.site-nav .nav-link {
+  color: #d3ddef;
+  padding: 10px 15px;
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active {
+  color: white;
+  background-color: #30415e;
+}
+
+.docs-content {
+  max-width: 1000px;
+}
+
+.page-heading {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #dfe5ed;
+}
+
+.page-eyebrow {
+  color: #315fcb;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.page-heading h1 {
+  color: #14243e;
+  font-weight: bold;
+}
+
+.page-intro {
+  color: #637289;
+  font-size: 18px;
+}
+
+.doc-section {
+  background-color: white;
+  border: 1px solid #dfe5ed;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.doc-section h2 {
+  color: #14243e;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.doc-subsection {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #dfe5ed;
+}
+
+.doc-subsection h3 {
+  color: #14243e;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+figure {
+  margin: 20px 0;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #dfe5ed;
+  border-radius: 5px;
+}
+
+figcaption {
+  color: #637289;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.site-footer {
+  color: #637289;
+  font-size: 14px;
+  padding: 20px 0;
+}
+/* Requirements page tables and print layout. Other project pages are unchanged. */
+.role1-page .requirements-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+}
+
+.role1-page .requirements-table th,
+.role1-page .requirements-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #dfe5ed;
+  text-align: left;
+  vertical-align: top;
+}
+
+.role1-page .requirements-table th {
+  background-color: #f5f7fb;
+}
+
+.role1-page .requirements-table th:first-child,
+.role1-page .requirements-table td:first-child {
+  width: 76px;
+}
+
+.role1-page .requirements-table td:nth-child(2) {
+  width: 52%;
+}
+
+.role1-page h4 {
+  color: #14243e;
+  font-size: 17px;
+  margin-top: 20px;
+  margin-bottom: 7px;
+}
+
+@media (max-width: 650px) {
+  .role1-page .requirements-table {
+    display: block;
+    overflow-x: auto;
+  }
+  .role1-page .requirements-table th,
+  .role1-page .requirements-table td {
+    padding: 7px;
+  }
+}
+
+@media print {
+  @page { size: letter; margin: 0.56in 0.63in 0.55in; }
+
+  .role1-page {
+    background: white;
+    font-size: 10.5pt;
+    color: #26354d;
+    line-height: 1.36;
+  }
+
+  .role1-page header { display: none; }
+  .role1-page .docs-content { max-width: none; padding: 0 !important; }
+  .role1-page .page-heading { padding-bottom: 8px; margin-bottom: 14px; }
+  .role1-page .page-heading h1 { font-size: 22pt !important; margin-bottom: 6px !important; }
+  .role1-page .page-intro { font-size: 10.5pt; }
+  .role1-page .doc-section {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 16px;
+    background: white;
+  }
+  .role1-page .doc-section h2 { font-size: 14pt; margin-bottom: 8px; }
+  .role1-page .doc-subsection { padding-top: 8px; margin-top: 9px; }
+  .role1-page .doc-subsection h3 { font-size: 11pt; margin-bottom: 5px; }
+  .role1-page h4 { font-size: 10.2pt; margin-top: 11px; margin-bottom: 2px; }
+  .role1-page p { margin-bottom: 7px; }
+  .role1-page ul { margin-bottom: 8px; }
+  .role1-page li { margin-bottom: 2px; }
+  .role1-page .requirements-table { font-size: 9.3pt; margin: 7px 0 12px; }
+  .role1-page .requirements-table th,
+  .role1-page .requirements-table td { padding: 4px 7px; }
+  .role1-page .requirements-table th:first-child,
+  .role1-page .requirements-table td:first-child { width: 54px; }
+  .role1-page figure { margin: 12px 0 13px; }
+  .role1-page figure img { max-height: 2.95in; object-fit: contain; border: 0; }
+  .role1-page figcaption { font-size: 8.5pt; margin-top: 3px; }
+  .role1-page h2, .role1-page h3, .role1-page h4 { break-after: avoid; }
+  .role1-page tr, .role1-page figure { break-inside: avoid; }
+}

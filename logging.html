@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Logging | TEMPO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/metro.png">
+ </head>
+ <body>
+  <header>
+   <nav class="navbar navbar-expand-lg navbar-dark site-nav" aria-label="Main navigation">
+    <div class="container-fluid px-lg-4">
+     <a class="navbar-brand" href="index.html">TEMPO</a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavigation" aria-controls="siteNavigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="siteNavigation">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+       <li class="nav-item">
+        <a class="nav-link" href="architecture.html">Architecture</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="goals.html">Activities &amp; Goals</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="logging.html">Time Logging &amp; Storage</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="analytics.html">Progress &amp; Analytics</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="interface.html">User Interface</a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </nav>
+  </header>
+  <main class="container docs-content py-4 py-md-5">
+   <div class="page-heading">
+    <h1 class="display-5 mb-3">Time Logging & Data Storage</h1>
+    <p class="page-intro mb-0">This page explains how TEMPO records time spent on activities, stores entries, and keeps the data correct when entries are created, edited, or deleted.</p>
+   </div>
+   <section class="doc-section" id="data-model">
+    <h2>1. Data Model</h2>
+    <p>TEMPO saves each time entry separately. Every entry belongs to one user and one activity, so users can log multiple sessions on different days.</p>
+    <section class="doc-subsection" id="entities">
+     <h3>1.1 Main Entities</h3>
+     <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+       <thead>
+        <tr>
+         <th>Entity</th>
+         <th>Main Fields</th>
+         <th>Purpose</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>User</td>
+         <td>userId</td>
+         <td>Identifies who owns each activity and time entry.</td>
+        </tr>
+        <tr>
+         <td>Activity</td>
+         <td>activityId, userId, name</td>
+         <td>Identifies the activity that the user tracks.</td>
+        </tr>
+        <tr>
+         <td>TimeRecord</td>
+         <td>entryId, userId, activityId, entryDate, durationMinutes, note, createdAt, updatedAt</td>
+         <td>Stores one session of logged time.</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <p>A user can have many activities and entries. Each entry belongs to one activity. Goal details are covered on the Activities and Goals page.</p>
+    </section>
+    <section class="doc-subsection" id="class-diagram">
+     <h3>1.2 UML Class Diagram</h3>
+     <figure id="FIG-40" class="border rounded p-3 bg-white">
+      <img src="images/class_diagram_logging.png" alt="UML class diagram showing activities, time entries,
+         the logging service, and the repository." class="img-fluid">
+      <figcaption> FIG-40: Time Logging Class Diagram </figcaption>
+     </figure>
+    </section>
+   </section>
+   <section class="doc-section" id="logging-operations">
+    <h2>2. Time Logging Operations</h2>
+    <p>Users can add, edit, or delete entries. The Time Logging Service checks each change before saving it.</p>
+    <section class="doc-subsection" id="create-entry">
+     <h3>2.1 Create a Time Entry</h3>
+     <p>The user selects an activity, date, and minutes, then may add a note. TEMPO checks and saves the entry for progress tracking.</p>
+    </section>
+    <section class="doc-subsection" id="edit-entry">
+     <h3>2.2 Edit a Time Entry</h3>
+     <p> The user can change an entry's date, duration, or note. The activity associated with the entry cannot be changed after it has been saved. TEMPO checks the changes and updates the same entry. Progress calculations use the updated values. </p>
+    </section>
+    <section class="doc-subsection" id="delete-entry">
+     <h3>2.3 Delete a Time Entry</h3>
+     <p>After the user confirms, TEMPO deletes the entry. Its minutes no longer count toward totals or goals. The activity and goal remain.</p>
+    </section>
+    <section class="doc-subsection" id="sequence-diagram">
+     <h3>2.4 UML Sequence Diagram</h3>
+     <figure id="FIG-41" class="border rounded p-3 bg-white">
+      <img src="images/sequence_diagram_logging.png" alt="UML sequence diagram showing the creation and
+         storage of a time entry." class="img-fluid">
+      <figcaption> FIG-41: Create Time Entry Sequence Diagram </figcaption>
+     </figure>
+    </section>
+   </section>
+   <section class="doc-section" id="storage-consistency">
+    <h2>3. Storage, Validation, and Consistency</h2>
+    <section class="doc-subsection" id="validation">
+     <h3>3.1 Data Validation</h3>
+     <p>TEMPO checks that an activity is selected, the date is valid, and minutes are a positive whole number. It also checks that the entry and activity belong to the signed-in user. Invalid entries are not saved. Notes are optional.</p>
+    </section>
+    <section class="doc-subsection" id="persistence">
+     <h3>3.2 Data Storage</h3>
+     <p>TEMPO saves entries in a database so they remain available later. Each entry has a unique ID and links to a user and activity. The repository saves, finds, updates, and deletes entries. The architecture team will choose the database.</p>
+    </section>
+    <section class="doc-subsection" id="calculations">
+     <h3>3.3 Changes to Calculations</h3>
+     <p> Analytics uses saved entries to calculate minutes by activity and date. Creating, editing, or deleting an entry affects the calculations for the associated activity. </p>
+     <p> After a time entry is created, edited, or deleted, the Time Logging Service publishes a RecordChanged event. The analytics subsystem receives this event and invalidates affected cached reports so updated results can be generated. </p>
+     <p>Logging keeps entries correct. Analytics calculates totals, averages, and goal progress from the latest entries, or updates its summaries after a change.</p>
+    </section>
+    <section class="doc-subsection" id="component-interactions">
+     <h3>3.4 Component Interactions</h3>
+     <p>
+      <strong>C-04: Time Logging Service</strong> checks requests from the user interface and sends valid changes to storage.
+     </p>
+     <p>
+      <strong>C-05: Time Entry Repository</strong> saves and finds entries. Progress and Analytics uses them for current results.
+     </p>
+    </section>
+   </section>
+   <section class="doc-section" id="design-rationale">
+    <h2>4. Design Rationale</h2>
+    <section class="doc-subsection" id="decision-one">
+     <h3>DD-04: Save Each Time Session Separately</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-10, FR-11, FR-13
+     </p>
+     <p>Separate entries let users fix a session and let TEMPO calculate daily and weekly totals. This uses more storage than one total, but keeps more useful detail.</p>
+    </section>
+    <section class="doc-subsection" id="decision-two">
+     <h3>DD-05: Check Entries Before Saving</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-09
+     </p>
+     <p>The service checks dates, minutes, activity links, and ownership before saving. This helps prevent errors and protects user records.</p>
+    </section>
+    <section class="doc-subsection" id="decision-three">
+     <h3>DD-06: Save Entries and Calculate Progress from Them</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-16, FR-18, NFR-01, NFR-02
+     </p>
+     <p>Saved entries stay available across sessions. Calculating from entries avoids totals that can become outdated, though recalculating many entries may take longer.</p>
+    </section>
+   </section>
+   <section class="doc-section" id="traceability">
+    <h2>5. Requirements and Components</h2>
+    <div class="table-responsive">
+     <table class="table table-bordered align-middle">
+      <thead>
+       <tr>
+        <th>Requirement</th>
+        <th>Description</th>
+        <th>Component</th>
+        <th>Design Decision</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>FR-09</td>
+        <td>Create manual time entries</td>
+        <td>C-04, C-05</td>
+        <td>DD-05</td>
+       </tr>
+       <tr>
+        <td>FR-10</td>
+        <td>Store each session separately</td>
+        <td>C-04, C-05</td>
+        <td>DD-04</td>
+       </tr>
+       <tr>
+        <td>FR-11</td>
+        <td>Edit existing time records</td>
+        <td>C-04, C-05</td>
+        <td>DD-04, DD-05</td>
+       </tr>
+       <tr>
+        <td>FR-12</td>
+        <td>Confirm deletion of time records</td>
+        <td>C-04, C-05</td>
+        <td>DD-05</td>
+       </tr>
+       <tr>
+        <td>FR-13</td>
+        <td>Display activity-specific time record history</td>
+        <td>C-05</td>
+        <td>DD-04</td>
+       </tr>
+       <tr>
+        <td>FR-16</td>
+        <td>Calculate totals and daily averages</td>
+        <td>C-05, Analytics</td>
+        <td>DD-06</td>
+       </tr>
+       <tr>
+        <td>FR-18</td>
+        <td>Recalculate reports after time record changes</td>
+        <td>C-04, C-05, Analytics</td>
+        <td>DD-06</td>
+       </tr>
+       <tr>
+        <td>NFR-01</td>
+        <td>Preserve records across sessions</td>
+        <td>C-05</td>
+        <td>DD-06</td>
+       </tr>
+       <tr>
+        <td>NFR-02</td>
+        <td>Use consistent duration units and reporting periods</td>
+        <td>C-04, C-05, Analytics</td>
+        <td>DD-06</td>
+       </tr>
+       <tr>
+        <td>NFR-07</td>
+        <td>Restrict access to each user's records when accounts are used</td>
+        <td>C-04, C-05</td>
+        <td>DD-05</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ </body>
+</html>

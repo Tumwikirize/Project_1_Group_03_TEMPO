@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="800" viewBox="0 0 1290 800" role="img" aria-labelledby="title desc">
+  <title id="title">FIG-51 Analytics report data model</title>
+  <desc id="desc">UML class diagram of the report objects produced by the analytics components. A ReportRequest for one or more activities produces a ProgressReport. A ProgressReport is composed of one or more PeriodSummary objects, one Statistics object, an optional Projection, and one ChartSeries. Each PeriodSummary covers one ReportingPeriod and has a PeriodStatus. Time records from the logging design are grouped into reporting periods. The Goal and StatusPeriod classes from the goals design (C-30) supply the target in effect and any suspended or archived days for each period. A separate DashboardSummary holds the cross-activity totals and goal counts shown on the dashboard.</desc>
+  <defs>
+    <marker id="filled" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4f6079" /></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5" fill="none" stroke="#4f6079" stroke-width="1.4" /></marker>
+  </defs>
+  <rect width="1290" height="800" fill="#ffffff" />
+  <rect x="30" y="40" width="250" height="132" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="155.0" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">ReportRequest</text>
+  <polyline points="30,70 280,70" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="40" y="88" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">activityIds: ID [1..*]</text>
+  <text x="40" y="106" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">periodType: DAY | WEEK</text>
+  <text x="40" y="124" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">rangeStart: Date</text>
+  <text x="40" y="142" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">rangeEnd: Date</text>
+  <text x="40" y="160" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">projectionDate: Date [0..1]</text>
+  <rect x="370" y="40" width="320" height="168" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="530.0" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">ProgressReport</text>
+  <polyline points="370,70 690,70" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="380" y="88" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">activityName: String</text>
+  <text x="380" y="106" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">unit: String = "minutes"</text>
+  <text x="380" y="124" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">rangeStart: Date</text>
+  <text x="380" y="142" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">rangeEnd: Date</text>
+  <text x="380" y="160" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">goalLabel: String [0..1]</text>
+  <text x="380" y="178" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">textSummary: String</text>
+  <text x="380" y="196" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">generatedAt: DateTime</text>
+  <rect x="800" y="40" width="270" height="114" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="935.0" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">ChartSeries</text>
+  <polyline points="800,70 1070,70" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="810" y="88" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">labels: String [*]</text>
+  <text x="810" y="106" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">valuesMinutes: Integer [*]</text>
+  <text x="810" y="124" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">goalLineMinutes: Integer [0..1]</text>
+  <text x="810" y="142" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">statuses: PeriodStatus [*]</text>
+  <rect x="30" y="330" width="250" height="126" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="155.0" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">ReportingPeriod</text>
+  <polyline points="30,360 280,360" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="40" y="378" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">type: DAY | WEEK</text>
+  <text x="40" y="396" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">start: Date</text>
+  <text x="40" y="414" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">end: Date</text>
+  <polyline points="30,426 280,426" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="40" y="444" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">contains(date: Date): Boolean</text>
+  <rect x="370" y="330" width="300" height="132" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="520.0" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">PeriodSummary</text>
+  <polyline points="370,360 670,360" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="380" y="378" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">totalMinutes: Integer</text>
+  <text x="380" y="396" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">targetMinutes: Integer [0..1]</text>
+  <text x="380" y="414" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">percentOfGoal: Integer [0..1]</text>
+  <text x="380" y="432" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">remainingMinutes: Integer</text>
+  <text x="380" y="450" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">status: PeriodStatus [0..1]</text>
+  <rect x="740" y="330" width="260" height="258" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="870.0" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">Statistics</text>
+  <polyline points="740,360 1000,360" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="750" y="378" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">totalMinutes: Integer</text>
+  <text x="750" y="396" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">daysInRange: Integer</text>
+  <text x="750" y="414" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">activeDays: Integer</text>
+  <text x="750" y="432" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">avgDailyMinutes: Decimal</text>
+  <text x="750" y="450" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">avgActiveDayMinutes: Decimal</text>
+  <text x="750" y="468" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">sessionCount: Integer</text>
+  <text x="750" y="486" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">bestPeriodMinutes: Integer</text>
+  <text x="750" y="504" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">metPeriods: Integer</text>
+  <text x="750" y="522" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">countedPeriods: Integer</text>
+  <text x="750" y="540" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">completionRate: Decimal [0..1]</text>
+  <text x="750" y="558" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">currentStreak: Integer</text>
+  <text x="750" y="576" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">longestStreak: Integer</text>
+  <rect x="1030" y="330" width="210" height="168" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="1135.0" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">Projection</text>
+  <polyline points="1030,360 1240,360" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="1040" y="378" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">targetDate: Date</text>
+  <text x="1040" y="396" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">baselineMinutes: Integer</text>
+  <text x="1040" y="414" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">windowDays: Integer</text>
+  <text x="1040" y="432" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">windowAvg: Decimal</text>
+  <text x="1040" y="450" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">projectedMinutes: Integer</text>
+  <text x="1040" y="468" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">sufficientData: Boolean</text>
+  <text x="1040" y="486" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">cumulativeMinutes: Integer [*]</text>
+  <rect x="370" y="570" width="220" height="148" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="480.0" y="590" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f">«enumeration»</text>
+  <text x="480.0" y="607" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">PeriodStatus</text>
+  <polyline points="370,616 590,616" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="380" y="634" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">MET</text>
+  <text x="380" y="652" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">IN_PROGRESS</text>
+  <text x="380" y="670" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">MISSED</text>
+  <text x="380" y="688" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">SUSPENDED</text>
+  <text x="380" y="706" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">NO_GOAL</text>
+  <rect x="30" y="590" width="250" height="112" rx="0" fill="#ffffff" stroke="#65778f" stroke-width="2" stroke-dasharray="8 5" />
+  <text x="155.0" y="610" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f">«Time Logging, C-05»</text>
+  <text x="155.0" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">TimeRecord</text>
+  <polyline points="30,636 280,636" fill="none" stroke="#65778f" stroke-width="1.5" />
+  <text x="40" y="654" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">activityId: ID</text>
+  <text x="40" y="672" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">entryDate: Date</text>
+  <text x="40" y="690" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">durationMinutes: Integer</text>
+  <rect x="740" y="620" width="240" height="130" rx="0" fill="#ffffff" stroke="#65778f" stroke-width="2" stroke-dasharray="8 5" />
+  <text x="860.0" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f">«Activities &amp; Goals, C-30»</text>
+  <text x="860.0" y="657" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">Goal</text>
+  <polyline points="740,666 980,666" fill="none" stroke="#65778f" stroke-width="1.5" />
+  <text x="750" y="684" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">type: DAILY | WEEKLY</text>
+  <text x="750" y="702" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">targetMinutes: Integer</text>
+  <text x="750" y="720" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">startDate: Date</text>
+  <text x="750" y="738" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">endDate: Date [0..1]</text>
+  <rect x="1010" y="620" width="230" height="112" rx="0" fill="#ffffff" stroke="#65778f" stroke-width="2" stroke-dasharray="8 5" />
+  <text x="1125.0" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f">«Activities &amp; Goals, C-30»</text>
+  <text x="1125.0" y="657" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">StatusPeriod</text>
+  <polyline points="1010,666 1240,666" fill="none" stroke="#65778f" stroke-width="1.5" />
+  <text x="1020" y="684" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">type: SUSPENDED | ARCHIVED</text>
+  <text x="1020" y="702" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">startDate: Date</text>
+  <text x="1020" y="720" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">endDate: Date [0..1]</text>
+  <polyline points="280,100 368,100" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="324" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">«produces»</text>
+  <polyline points="470.0,224.0 470,330" fill="none" stroke="#4f6079" stroke-width="1.8" />
+  <polygon points="470.0,208.0 463.0,216.0 470.0,224.0 477.0,216.0" fill="#183454" stroke="#183454" stroke-width="1" />
+  <text x="478" y="228" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">1</text>
+  <text x="478" y="322" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">history 1..*</text>
+  <polyline points="633.6592577579589,216.3321472323549 820,330" fill="none" stroke="#4f6079" stroke-width="1.8" />
+  <polygon points="620.0,208.0 623.2,218.1 633.7,216.3 630.5,206.2" fill="#183454" stroke="#183454" stroke-width="1" />
+  <text x="828" y="322" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">1</text>
+  <polyline points="705.0678705855174,185.3813823519705 1110,330" fill="none" stroke="#4f6079" stroke-width="1.8" />
+  <polygon points="690.0,180.0 695.2,189.3 705.1,185.4 699.9,176.1" fill="#183454" stroke="#183454" stroke-width="1" />
+  <text x="1116" y="322" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">0..1</text>
+  <polyline points="706.0,90.0 800,90" fill="none" stroke="#4f6079" stroke-width="1.8" />
+  <polygon points="690.0,90.0 698.0,97.0 706.0,90.0 698.0,83.0" fill="#183454" stroke="#183454" stroke-width="1" />
+  <text x="794" y="82" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">1</text>
+  <polyline points="370,390 282,390" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#open)" />
+  <text x="290" y="382" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">period 1</text>
+  <polyline points="480,462 480,568" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <polyline points="155,590 155,458" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="163" y="530" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">«grouped by date»</text>
+  <polyline points="640,462 738,670" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="652" y="540" text-anchor="end" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">«target from»</text>
+  <polyline points="670,450 715,450 715,604 1125,604 1125,618" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="1062" y="598" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#65778f" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">«status from»</text>
+  <rect x="1090" y="40" width="185" height="168" rx="0" fill="#f3f7fc" stroke="#183454" stroke-width="2" />
+  <text x="1182.5" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#183454">DashboardSummary</text>
+  <polyline points="1090,70 1275,70" fill="none" stroke="#183454" stroke-width="1.5" />
+  <text x="1100" y="88" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">date: Date</text>
+  <text x="1100" y="106" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">minutesToday: Integer</text>
+  <text x="1100" y="124" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">minutesThisWeek: Integer</text>
+  <text x="1100" y="142" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">dailyGoalsMet: Integer</text>
+  <text x="1100" y="160" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">dailyGoals: Integer</text>
+  <text x="1100" y="178" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">weeklyGoalsMet: Integer</text>
+  <text x="1100" y="196" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e">weeklyGoals: Integer</text>
+</svg>

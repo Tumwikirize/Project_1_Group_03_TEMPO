@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title> Overview | TEMPO </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+  <link href="images/metro.png" rel="icon" type="image/png" />
+ </head>
+ <body class="role1-page">
+  <header>
+   <nav aria-label="Main navigation" class="navbar navbar-expand-lg navbar-dark site-nav">
+    <div class="container-fluid px-lg-4">
+     <a class="navbar-brand" href="index.html"> TEMPO </a>
+     <button aria-controls="siteNavigation" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#siteNavigation" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="siteNavigation">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+       <li class="nav-item">
+        <a class="nav-link" href="architecture.html"> Architecture </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="goals.html"> Activities &amp; Goals </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="logging.html"> Time Logging &amp; Storage </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="analytics.html"> Progress &amp; Analytics </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="interface.html"> User Interface </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </nav>
+  </header>
+  <main class="container docs-content py-4 py-md-5">
+   <div class="page-heading">
+    <h1 class="display-5 mb-3"> Overview &amp; Requirements </h1>
+    <p class="page-intro mb-0"> TEMPO tracks the time people spend on personal activities such as studying, reading, and exercise. Users set daily or weekly goals, record individual sessions, and review their progress using charts and statistics. </p>
+   </div>
+   <section class="doc-section" id="overview">
+    <h2> 1. System Overview </h2>
+    <p> The time devoted to studying, reading, or practicing an instrument is a useful measure of personal progress. TEMPO, Time and Effort Monitoring for Personal Objectives, records the duration of individual sessions and compares the accumulated time with daily or weekly goals. Users can review their progress using totals, averages, charts, and estimates calculated from saved time records. </p>
+    <section class="doc-subsection" id="users">
+     <h3> 1.1 Customer and users </h3>
+     <p> TEMPO is designed for people who want to track the time devoted to personal goals such as studying, exercise, or practicing an instrument. Each person can create activities and establish goals suited to their own schedule. Students can track their study hours, musicians can review practice sessions, and readers can monitor how much time they spend reading. </p>
+     <p> Users begin by naming an activity and establishing a daily or weekly goal. After completing a session, they record the time spent and can review or correct their saved records whenever they return to the application. </p>
+    </section>
+   </section>
+   <section class="doc-section" id="scope">
+    <h2> 2. System Scope and Boundaries </h2>
+    <p> Users create activities, establish daily or weekly goals, and manually record the date and duration of each completed session. TEMPO associates each time record with its activity and uses the saved information to calculate totals, daily averages, charts, and estimates for future dates. When a record is corrected or deleted, the application recalculates the affected reports. </p>
+    <p> The system covers activity creation, goal management, manual time recording, and progress reporting. Each activity has its own status and a current goal. Revising a goal creates a new goal while retaining the previous version for historical comparisons. Saved time records remain associated with their activity. </p>
+    <section class="doc-subsection" id="terminology">
+     <h3> 2.1 Terms used in the requirements </h3>
+     <p> An activity identifies a personal objective, such as reading or practicing the piano, and has an active, suspended, or archived status. The status belongs to the activity and applies to its current goal. A goal specifies the duration planned for each day or week. TEMPO retains each goal version and the date it became current. A time record stores the date and duration of an individual session. TEMPO compares recorded time with the goal applicable to each day or week and estimates future totals from saved time records. </p>
+    </section>
+   </section>
+   <section class="doc-section" id="workflow">
+    <h2> 3. Expected User Workflow </h2>
+    <p> A student who wants to study seven hours each week creates a Study activity with a seven-hour weekly goal. After a forty-five-minute session in the morning and a thirty-minute session in the evening, the student records each session in TEMPO. The application saves two time records and calculates progress from their combined duration, eliminating the need to add the minutes manually. </p>
+    <p> If a saved date is incorrect, the student can edit the time record and TEMPO recalculates the totals and updates the chart. Revising the current goal creates a new goal without changing past daily or weekly goal comparisons. An activity and its current goal can be suspended, resumed, archived, or restored without losing their records. Deleting an activity requires confirmation and removes its goals and time records. A person tracking reading or exercise time can use the same process with a daily or weekly target suited to the activity. </p>
+   </section>
+   <section class="doc-section" id="functional-requirements">
+    <h2> 4. Functional Requirements </h2>
+    <p> Each functional requirement describes an action users can perform or a result TEMPO must calculate. The FR identifiers make the requirements traceable to design components, and the verification column provides a practical test for each one. The requirements include activity and goal management, time records, and progress reports. FR-19 and FR-20 extend activity and goal management without changing the existing identifiers. </p>
+    <section class="doc-subsection" id="activity-requirements">
+     <h3> 4.1 Activities and goals </h3>
+     <table class="requirements-table">
+      <thead>
+       <tr>
+        <th scope="col"> ID </th>
+        <th scope="col"> Requirement </th>
+        <th scope="col"> Verification </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr id="FR-01">
+        <td> FR-01 </td>
+        <td> TEMPO shall require an activity name and save the activity after the user provides one. </td>
+        <td> Create an activity with a valid name, then repeat the operation with a blank name and compare the results. </td>
+       </tr>
+       <tr id="FR-02">
+        <td> FR-02 </td>
+        <td> TEMPO shall display saved activities with their current goals and statuses. The Dashboard shall use activity cards for active activities, while the All Activities page shall provide a complete list of active, suspended, and archived activities. </td>
+        <td> Create active, suspended, and archived activities. Verify that active activities appear as Dashboard cards and all three statuses appear with their current goals in the All Activities list. </td>
+       </tr>
+       <tr id="FR-03">
+        <td> FR-03 </td>
+        <td> Renaming an activity shall not change the dates or durations of its saved time records. </td>
+        <td> Rename an activity and compare its time records before and after the change. </td>
+       </tr>
+       <tr id="FR-04">
+        <td> FR-04 </td>
+        <td> The user shall be able to assign a positive duration target to an activity and select a daily or weekly interval. </td>
+        <td> Save a daily goal and a weekly goal, then inspect the duration and interval stored for each. </td>
+       </tr>
+       <tr id="FR-05">
+        <td> FR-05 </td>
+        <td> The user shall be able to revise the target duration or interval of an activity's current goal. TEMPO shall save the revision as a new goal and retain the previous goal. </td>
+        <td> Revise a goal duration and interval, then verify each revision creates a new current goal and retains all previous goal versions. </td>
+       </tr>
+       <tr id="FR-06">
+        <td> FR-06 </td>
+        <td> The user shall be able to suspend and resume an activity and its current goal. TEMPO shall record the status on the activity and apply it to its current goal. </td>
+        <td> Suspend an activity and verify its status and current goal are suspended; resume the activity and verify its status and current goal are active. </td>
+       </tr>
+       <tr id="FR-07">
+        <td> FR-07 </td>
+        <td> The user shall be able to archive an activity and its current goal. TEMPO shall record the archived status on the activity and distinguish archived activities from active activities. </td>
+        <td> Archive an activity and verify it appears in the archived list, then verify its current goal and saved records remain available. </td>
+       </tr>
+       <tr id="FR-08">
+        <td> FR-08 </td>
+        <td> TEMPO shall request confirmation before deleting an activity and its goal. On confirmation, TEMPO shall delete the activity, all its goals, and all its associated time records. </td>
+        <td> Cancel a deletion request and verify the activity, its goals, and its time records remain. Confirm a second request and verify all are removed. </td>
+       </tr>
+       <tr id="FR-19">
+        <td> FR-19 </td>
+        <td> The user shall be able to restore an archived activity and its current goal. TEMPO shall return the activity to active status without deleting its saved goals or time records. </td>
+        <td> Archive an activity with multiple goal versions and time records, restore it, then verify its current goal, goal history, and time records remain available and the activity is active. </td>
+       </tr>
+       <tr id="FR-20">
+        <td> FR-20 </td>
+        <td> TEMPO shall retain each goal version and the date it became current. Revising a current goal shall not change comparisons for days or weeks preceding the revision. </td>
+        <td> Record sessions for a day and a week, inspect their goal comparisons, revise the current goal, and verify the original comparisons have not changed. </td>
+       </tr>
+      </tbody>
+     </table>
+    </section>
+    <section class="doc-subsection" id="time-requirements">
+     <h3> 4.2 Time recording </h3>
+     <table class="requirements-table">
+      <thead>
+       <tr>
+        <th scope="col"> ID </th>
+        <th scope="col"> Requirement </th>
+        <th scope="col"> Verification </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr id="FR-09">
+        <td> FR-09 </td>
+        <td> TEMPO shall save the date and positive duration of a session under the activity selected by the user. </td>
+        <td> Enter a dated session and verify its activity, date, and duration. </td>
+       </tr>
+       <tr id="FR-10">
+        <td> FR-10 </td>
+        <td> TEMPO shall save an individual time record for every session, including multiple sessions for one activity on the same date. </td>
+        <td> Record two sessions on the same date and verify each saved record can be viewed individually. </td>
+       </tr>
+       <tr id="FR-11">
+        <td> FR-11 </td>
+        <td> The user shall be able to change the date or duration of a saved time record. </td>
+        <td> Edit a time record and verify the saved date and duration match the revised values. </td>
+       </tr>
+       <tr id="FR-12">
+        <td> FR-12 </td>
+        <td> TEMPO shall request confirmation before deleting a saved time record. </td>
+        <td> Cancel a deletion request, then confirm the removal of a selected record. </td>
+       </tr>
+       <tr id="FR-13">
+        <td> FR-13 </td>
+        <td> TEMPO shall display the dated history of time records associated with a selected activity. </td>
+        <td> Record sessions under two activities and verify each activity displays its own session history. </td>
+       </tr>
+      </tbody>
+     </table>
+    </section>
+    <section class="doc-subsection" id="reporting-requirements">
+     <h3> 4.3 Progress and reports </h3>
+     <table class="requirements-table">
+      <thead>
+       <tr>
+        <th scope="col"> ID </th>
+        <th scope="col"> Requirement </th>
+        <th scope="col"> Verification </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr id="FR-14">
+        <td> FR-14 </td>
+        <td> TEMPO shall total recorded time for a selected day or week and compare the duration with the goal applicable to that period. </td>
+        <td> Enter sessions with known durations before and after a goal revision, then verify the totals and period-specific goal comparisons. </td>
+       </tr>
+       <tr id="FR-15">
+        <td> FR-15 </td>
+        <td> TEMPO shall display a chart comparing recorded time across days or weeks. </td>
+        <td> Record sessions on several dates and verify the chart agrees with the saved time records. </td>
+       </tr>
+       <tr id="FR-16">
+        <td> FR-16 </td>
+        <td> TEMPO shall calculate total recorded time and average daily duration for a selected date range. </td>
+        <td> Enter sessions with known durations and compare the results with manually calculated totals and averages. </td>
+       </tr>
+       <tr id="FR-17">
+        <td> FR-17 </td>
+        <td> TEMPO shall estimate cumulative recorded time by a selected future date using previously saved sessions. </td>
+        <td> Use a known session history and future date to verify the estimate against the calculation defined in the analytics design. </td>
+       </tr>
+       <tr id="FR-18">
+        <td> FR-18 </td>
+        <td> TEMPO shall recalculate affected totals, charts, and statistics whenever a time record is created, edited, or deleted, including deletion with its activity. </td>
+        <td> Add, revise, and delete time records, including through activity deletion, then verify affected reports agree with the saved history. </td>
+       </tr>
+      </tbody>
+     </table>
+    </section>
+   </section>
+   <section class="doc-section" id="nonfunctional-requirements">
+    <h2> 5. Nonfunctional Requirements </h2>
+    <p> Saved time records must be available when users return to TEMPO, and the totals displayed in charts and reports must agree. The nonfunctional requirements specify expectations for data storage, matching calculations, usability, keyboard accessibility, and response time. Measurable targets are included wherever a practical test can be conducted. </p>
+    <table class="requirements-table">
+     <thead>
+      <tr>
+       <th scope="col"> ID </th>
+       <th scope="col"> Requirement </th>
+       <th scope="col"> Verification </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr id="NFR-01">
+       <td> NFR-01 </td>
+       <td> Saved activities, goals, and time records shall be available after the user exits TEMPO and returns. </td>
+       <td> Save records, close and reopen TEMPO, and verify the information is still available. </td>
+      </tr>
+      <tr id="NFR-02">
+       <td> NFR-02 </td>
+       <td> TEMPO shall use the same duration units and reporting-period boundaries for goal comparisons, totals, averages, and charts. </td>
+       <td> Enter known durations and verify calculations agree across the corresponding reports. </td>
+      </tr>
+      <tr id="NFR-03">
+       <td> NFR-03 </td>
+       <td> At least four of five first-time users shall independently create an activity, assign a goal, and record a session during a usability test. </td>
+       <td> Observe five first-time users completing the sequence independently and record how many finish. </td>
+      </tr>
+      <tr id="NFR-04">
+       <td> NFR-04 </td>
+       <td> Activity management, goal management, and time recording shall support keyboard input, and the interface shall provide text labels and written chart summaries. </td>
+       <td> Complete the activity, goal, and time-recording operations using keyboard controls and verify the field labels and chart summaries. </td>
+      </tr>
+      <tr id="NFR-05">
+       <td> NFR-05 </td>
+       <td> Every progress report shall identify the activity, date range, duration unit, recorded total, and applicable goal. </td>
+       <td> Inspect daily and weekly reports and verify the required information is visible. </td>
+      </tr>
+      <tr id="NFR-06">
+       <td> NFR-06 </td>
+       <td> With 100 activities and 10,000 time records, at least 95% of save and progress-view operations shall finish within three seconds in a documented test environment. </td>
+       <td> Run repeated operations using the specified dataset and record their completion times. </td>
+      </tr>
+      <tr id="NFR-07">
+       <td> NFR-07 </td>
+       <td> When individual user accounts are used, TEMPO shall restrict access to each person's own activities, goals, and time records. </td>
+       <td> Test two accounts and verify each account can retrieve its own activities, goals, and time records. </td>
+      </tr>
+     </tbody>
+    </table>
+    <p> The first-time user test in NFR-03 and the performance test in NFR-06 require documented test conditions and results. NFR-07 applies when the system design includes personal accounts. </p>
+   </section>
+   <section class="doc-section" id="use-cases">
+    <h2> 6. Use Cases and UML Diagrams </h2>
+    <p> FIG-01 presents the principal activities in TEMPO, including goal management, time recording, and reviewing progress. FIG-02 provides more detail on editing records, managing activity status, and comparing recorded time with a target. The functional requirements additionally specify restoring archived activities and retaining previous goal versions. </p>
+    <figure id="FIG-01">
+     <img alt="FIG-01, TEMPO system boundary, individual user, and primary use cases for activities, goals, recorded sessions, progress, and statistics." height="455" src="images/tempo-usecase-overview.svg" width="1100" />
+     <figcaption> FIG-01. TEMPO system use cases. </figcaption>
+    </figure>
+    <figure id="FIG-02">
+     <img alt="FIG-02, Detailed UML use cases for activity and goal changes, manual time recording, and reviewing saved results." height="570" src="images/tempo-usecase-detail.svg" width="1240" />
+     <figcaption> FIG-02. Activity, goal, and time-recording use cases. </figcaption>
+    </figure>
+    <section class="doc-subsection" id="use-case-descriptions">
+     <h3> 6.1 Use-case descriptions </h3>
+     <h4 id="UC-01"> UC-01. Create an activity and goal </h4>
+     <p> When a user names an activity and sets a daily or weekly time goal, TEMPO saves the information and associates future time records with the activity. The activity name and a positive goal duration are required before the information can be saved. FR-01, FR-02, and FR-04 define the creation and validation requirements. </p>
+     <h4 id="UC-02"> UC-02. Record and correct time </h4>
+     <p> The user selects an activity and enters the date and duration of a completed session. Each session is saved as an individual time record, including sessions completed on the same day. Corrections apply to the selected time record, and TEMPO recalculates the affected totals and charts. FR-09 to FR-13 and FR-18 specify the recording and correction requirements. </p>
+     <h4 id="UC-03"> UC-03. Review recorded progress </h4>
+     <p> After selecting an activity and a day or week to review, the user can compare recorded time with the goal applicable to that period. TEMPO displays a chart, daily average, historical totals, and a projection of cumulative time for a selected future date. The projection is an estimate calculated from saved time records. FR-13 to FR-17 and FR-20 define the requirements for reviewing progress. </p>
+     <h4 id="UC-04"> UC-04. Manage an activity and its goals </h4>
+     <p> A person can change an activity's current goal, suspend or resume the activity and its goal, and archive or restore the activity. TEMPO saves a revised goal as a new version, retains previous goals for past comparisons, and stores status on the activity. Deleting the activity requires confirmation and removes all its goals and time records. FR-05 to FR-08, FR-19, and FR-20 specify these operations. </p>
+    </section>
+   </section>
+   <section class="doc-section" id="coordination">
+    <h2> 7. Requirements Verification and Design References </h2>
+    <p> The overall architecture maps numbered components to the requirements they support, and design decisions reference the same FR and NFR numbers. The table identifies which requirements each technical section must account for in its design. </p>
+    <table class="requirements-table handoff-table">
+     <thead>
+      <tr>
+       <th scope="col"> Design page </th>
+       <th scope="col"> Requirement identifiers </th>
+       <th scope="col"> Related design work </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td> Architecture </td>
+       <td> FR-01 to FR-20 and NFR-01 to NFR-07 </td>
+       <td> Components and requirement mappings. </td>
+      </tr>
+      <tr>
+       <td> Activities &amp; Goals </td>
+       <td> FR-01 to FR-08, FR-19 to FR-20 </td>
+       <td> Activity cards, goal versions, and activity status transitions. </td>
+      </tr>
+      <tr>
+       <td> Time Logging &amp; Storage </td>
+       <td> FR-08 to FR-13, FR-18, NFR-01, NFR-02 </td>
+       <td> Saved sessions, activity deletion, and data validation. </td>
+      </tr>
+      <tr>
+       <td> Progress &amp; Analytics </td>
+       <td> FR-14 to FR-18, FR-20, NFR-02, NFR-05 </td>
+       <td> Totals, historical goal comparisons, charts, averages, and projections. </td>
+      </tr>
+      <tr>
+       <td> User Interface </td>
+       <td> FR-01 to FR-20, NFR-03 to NFR-06 </td>
+       <td> Activity cards, time-recording screens, navigation, and accessibility. </td>
+      </tr>
+     </tbody>
+    </table>
+    <section class="doc-subsection" id="verification-methods">
+     <h3> 7.1 Verification examples </h3>
+     <p> Known session durations can be used to check calculations independently. If a student saves forty-five minutes of study in the morning and thirty minutes in the evening, FR-10 requires two time records and FR-14 requires the daily total to equal seventy-five minutes. Changing the first record to sixty minutes must update the daily and weekly totals to ninety minutes, along with the affected charts and averages under FR-18. The results can be compared with a manual calculation to confirm their consistency. If the student changes a seven-hour weekly goal to five hours, FR-20 requires completed weeks preceding the change to retain the seven-hour comparison. </p>
+    </section>
+   </section>
+  </main>
+  <script crossorigin="anonymous" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+ </body>
+</html>

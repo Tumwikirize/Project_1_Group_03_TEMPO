@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goal Management | TEMPO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="images/metro.png">
+ </head>
+ <body>
+  <header>
+   <nav class="navbar navbar-expand-lg navbar-dark site-nav" aria-label="Main navigation">
+    <div class="container-fluid px-lg-4">
+     <a class="navbar-brand" href="index.html">TEMPO</a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavigation" aria-controls="siteNavigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="siteNavigation">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+       <li class="nav-item">
+        <a class="nav-link" href="architecture.html">Architecture</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="goals.html">Activities &amp; Goals</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="logging.html">Time Logging &amp; Storage</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="analytics.html">Progress &amp; Analytics</a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="interface.html">User Interface</a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </nav>
+  </header>
+  <main class="container docs-content py-4 py-md-5">
+   <div class="page-heading">
+    <h1 class="display-5 mb-3">Activity &amp; Goal Management</h1>
+    <p class="page-intro mb-0">This page describes how TEMPO creates and changes activities and goals: how a goal is structured, how it repeats, what suspending, archiving and deleting mean, and how edits affect saved records.</p>
+   </div>
+   <section class="doc-section" id="overview">
+    <h2>1. Overview and Responsibilities</h2>
+    <p>The Goal Manager (C-30) owns every change to activities and goals. It covers FR-01 to FR-08, FR-19 and FR-20. Time records are owned by the logging design, and progress calculations by the analytics design. Both read the activities and goals defined here.</p>
+    <section class="doc-subsection" id="terms">
+     <h3>1.1 Terms</h3> In the interface, active activities appear as Dashboard cards showing their current goals (FIG-03), while the All Activities page lists all saved activities, including suspended and archived ones (FIG-04). <p>An <strong>activity</strong> is defined as a personal objective such as Reading. A <strong>goal</strong> is defined as a daily or weekly time target for that activity. The <strong>current goal</strong> is the goal with no end date. Following FR-06 and FR-07, the status (active, suspended or archived) belongs to the activity and applies to its current goal. </p>
+    </section>
+   </section>
+   <section class="doc-section" id="structure">
+    <h2>2. Data Structure and Components</h2>
+    <p>FIG-30 shows the classes managed by C-30. Field names and types match the Java notation used across the site. All durations are stored as whole minutes, and the interface formats them as minutes or hours (NFR-02). Each change of status is also saved as a dated StatusPeriod, so analytics can tell which days were suspended or archived.</p>
+    <figure id="FIG-30">
+     <img alt="FIG-30, class diagram of Activity, Goal, StatusPeriod, TimeRecord and GoalManager." src="images/fig-30-class.png" />
+     <figcaption>FIG-30: Activity and goal class diagram. An activity has one or more goals over the span of its lifetime, and only the goal with no end date is current.</figcaption>
+    </figure>
+    <section class="doc-subsection" id="goal-structure">
+     <h3>2.1 Goal structure and recurrence</h3>
+     <p>A goal has a type (daily or weekly), a positive target in minutes (FR-04), and a start and end date. A daily goal represents that much time each day. A weekly goal represents that much in total each week. There are no per-weekday targets. A goal repeats automatically from its start date until it is edited or the activity is archived, so nothing is re-created each period. Each goal version and the date it became current is retained (FR-05, FR-20). Whether a period was met is worked out from the saved time records and the goal in effect on that date. Weeks run Monday to Sunday, the same boundary used by analytics and charts (NFR-02).</p>
+    </section>
+    <section class="doc-subsection" id="lifecycle">
+     <h3>2.2 Activity states</h3>
+     <table class="requirements-table">
+      <thead>
+       <tr>
+        <th scope="col">State</th>
+        <th scope="col">Meaning</th>
+        <th scope="col">How it is stored</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>Active</td>
+        <td>Normal tracking.</td>
+        <td>Status ACTIVE, no open StatusPeriod.</td>
+       </tr>
+       <tr>
+        <td>Suspended</td>
+        <td>Time can still be logged. Suspended days are not counted as missed and are left out of averages and projections. Resuming returns to active.</td>
+        <td>Status SUSPENDED and an open StatusPeriod of type SUSPENDED (start date, no end date).</td>
+       </tr>
+       <tr>
+        <td>Archived</td>
+        <td>Hidden from active lists and read-only. History is kept and the activity can be restored (FR-19).</td>
+        <td>Status ARCHIVED and an open StatusPeriod of type ARCHIVED.</td>
+       </tr>
+       <tr>
+        <td>Deleted</td>
+        <td>Permanent. The activity, its goals, suspensions and time records are removed after confirmation.</td>
+        <td>Records removed.</td>
+       </tr>
+      </tbody>
+     </table>
+     <p> Suspended days do not count toward goal completion requirements. If an activity is suspended for part of a week, its weekly target is prorated according to the number of tracked days remaining in that week. Time recorded while suspended is still included in historical totals. </p>
+    </section>
+    <section class="doc-subsection" id="modifications">
+     <h3>2.3 Effect of modifications on existing records</h3>
+     <table class="requirements-table">
+      <thead>
+       <tr>
+        <th scope="col">Change</th>
+        <th scope="col">Effect</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>Rename activity (FR-03)</td>
+        <td>Only the name changes. Time records refer to the activity by ID, so all dates and durations are preserved.</td>
+       </tr>
+       <tr>
+        <td>Edit goal (FR-05)</td>
+        <td>The old goal gets an end date of today and a new goal starts today. Earlier periods keep their original target. The previous goal is retained (FR-05, FR-20).</td>
+       </tr>
+       <tr>
+        <td>Suspend / resume (FR-06)</td>
+        <td>Sets the status and adds or closes a StatusPeriod. Goals and time records are unchanged.</td>
+       </tr>
+       <tr>
+        <td>Archive / restore (FR-07)</td>
+        <td>Changes the status and adds or closes a StatusPeriod. Restoring returns the activity to active with its goals, goal history and time records intact (FR-19). Nothing is removed.</td>
+       </tr>
+       <tr>
+        <td>Delete (FR-08)</td>
+        <td>Removes the activity and everything attached to it.</td>
+       </tr>
+      </tbody>
+     </table>
+    </section>
+   </section>
+   <section class="doc-section" id="interactions">
+    <h2>3. Component Interactions</h2>
+    <p>The interface passes each user action to C-30, which validates it and saves the result through the data store described on the logging page. Analytics reads the saved goals and status periods by date (section 3.1); it never changes them.</p>
+    <figure id="FIG-31">
+     <img alt="FIG-31, sequence diagram for creating an activity." src="images/fig-31-create.png" />
+     <figcaption>FIG-31: Create activity. The name and target are validated (FR-01, FR-04), then the activity and its first goal are saved together, so an activity always starts with a current goal. Supports DD-33.</figcaption>
+    </figure>
+    <figure id="FIG-32">
+     <img alt="FIG-32, sequence diagram for editing a goal." src="images/fig-32-edit.png" />
+     <figcaption>FIG-32: Edit goal. The current goal is closed with an end date of today and a new goal is saved. Nothing is overwritten, and the previous goal is retained (FR-05, FR-20). Supports DD-30 and DD-32.</figcaption>
+    </figure>
+    <figure id="FIG-33">
+     <img alt="FIG-33, sequence diagram for suspending an activity." src="images/fig-33-suspend.png" />
+     <figcaption>FIG-33: Suspend activity. The status is set to SUSPENDED, a StatusPeriod is saved, and the interface displays the activity as Paused. Resuming ends the period today and returns the status to active. Archive and restore (FR-07, FR-19) follow the same pattern with the ARCHIVED type. Supports DD-31.</figcaption>
+    </figure>
+    <figure id="FIG-34">
+     <img alt="FIG-34, sequence diagram for deleting an activity with confirmation." src="images/fig-34-delete.png" />
+     <figcaption>FIG-34: Delete activity. The interface warns the user and suggests archiving; nothing is removed until the user confirms (FR-08). Supports DD-31.</figcaption>
+    </figure>
+    <section class="doc-subsection" id="analytics-interface">
+     <h3>3.1 Information provided to analytics</h3>
+     <p>C-30 gives the analytics components (C-50 to C-56) the goal versions of an activity: interval, target in minutes, and the date each version became current (FR-20), together with the activity's StatusPeriod records so that suspended and archived days can be identified. After every goal revision, suspension, resume, archive, restore or delete, C-30 publishes a GoalChanged event so that outdated reports are discarded.</p>
+    </section>
+   </section>
+   <section class="doc-section" id="mapping">
+    <h2>4. Requirements Mapping</h2>
+    <table class="requirements-table">
+     <thead>
+      <tr>
+       <th scope="col">Requirement</th>
+       <th scope="col">Component</th>
+       <th scope="col">Decisions</th>
+       <th scope="col">Figures</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>FR-01</td>
+       <td>C-30 (createActivity validation)</td>
+       <td>DD-33</td>
+       <td>FIG-31</td>
+      </tr>
+      <tr>
+       <td>FR-02</td>
+       <td>C-30 (supplies activities and status to the interface)</td>
+       <td>DD-31, DD-33</td>
+       <td>FIG-30</td>
+      </tr>
+      <tr>
+       <td>FR-03</td>
+       <td>C-30 (renameActivity)</td>
+       <td>DD-33</td>
+       <td>FIG-30</td>
+      </tr>
+      <tr>
+       <td>FR-04</td>
+       <td>C-30 (goal type and target)</td>
+       <td>DD-32</td>
+       <td>FIG-30, FIG-31</td>
+      </tr>
+      <tr>
+       <td>FR-05</td>
+       <td>C-30 (editGoal, keeps the previous goal)</td>
+       <td>DD-30, DD-32</td>
+       <td>FIG-32</td>
+      </tr>
+      <tr>
+       <td>FR-06</td>
+       <td>C-30 (suspend, resume)</td>
+       <td>DD-31</td>
+       <td>FIG-33</td>
+      </tr>
+      <tr>
+       <td>FR-07</td>
+       <td>C-30 (archiveActivity)</td>
+       <td>DD-31</td>
+       <td>FIG-33</td>
+      </tr>
+      <tr>
+       <td>FR-08</td>
+       <td>C-30 (deleteActivity)</td>
+       <td>DD-31</td>
+       <td>FIG-34</td>
+      </tr>
+      <tr>
+       <td>FR-14</td>
+       <td>C-30 (supplies the goal in effect for each period)</td>
+       <td>DD-30</td>
+       <td>FIG-32</td>
+      </tr>
+      <tr>
+       <td>FR-19</td>
+       <td>C-30 (restoreActivity)</td>
+       <td>DD-31</td>
+       <td>FIG-33</td>
+      </tr>
+      <tr>
+       <td>FR-20</td>
+       <td>C-30 (retains each goal version and its start date)</td>
+       <td>DD-30</td>
+       <td>FIG-32</td>
+      </tr>
+      <tr>
+       <td>NFR-01</td>
+       <td>C-30 with the data store</td>
+       <td>DD-31</td>
+       <td>FIG-30</td>
+      </tr>
+      <tr>
+       <td>NFR-02</td>
+       <td>C-30 (minutes, Monday week start)</td>
+       <td>DD-30, DD-32</td>
+       <td>FIG-30</td>
+      </tr>
+      <tr>
+       <td>NFR-03</td>
+       <td>C-30 (two-setting goal)</td>
+       <td>DD-32, DD-34</td>
+       <td>FIG-31</td>
+      </tr>
+     </tbody>
+    </table>
+   </section>
+   <section class="doc-section" id="design-rationale">
+    <h2>5. Design Rationale</h2>
+    <section class="doc-subsection" id="DD-30">
+     <h3>DD-30: Editing a goal creates a new goal instead of overwriting the old one</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-05, FR-14, FR-20, NFR-02
+     </p>
+     <p>
+      <strong>Decision:</strong> An edit gives the current goal an end date of today and saves a new goal starting today (FIG-32). The previous goal is kept with the date it became current (FR-05, FR-20).
+     </p>
+     <p>
+      <strong>Why:</strong> Past periods must be compared with the target that applied then (FR-14, FR-20). Overwriting would make every earlier day look incomplete after a target is raised from 30 to 60 minutes. The mechanism is only two date fields and one rule.
+     </p>
+     <p>
+      <strong>Alternatives:</strong> Overwriting can be simpler but rewrites history. Letting the user choose whether an edit applies to the past adds interface complexity and room for error.
+     </p>
+     <p>
+      <strong>Tradeoff:</strong> Slightly more storage and logic, since the goal in effect on a date must be looked up.
+     </p>
+    </section>
+    <section class="doc-subsection" id="DD-31">
+     <h3>DD-31: An activity is active, suspended, archived or deleted</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-02, FR-06, FR-07, FR-08, FR-19, NFR-01
+     </p>
+     <p>
+      <strong>Decision:</strong> Four states with the behavior in section 2.2. The status is stored on the activity, and each suspended or archived period is saved as a dated StatusPeriod. Restoring an archived activity returns it to active without removing anything (FR-19). Delete removes the activity, its goals and its time records after confirmation (FIG-33, FIG-34).
+     </p>
+     <p>
+      <strong>Why:</strong> Users stop for different reasons. These reasons include: a break (suspend), finishing but keeping the record (archive), or removing the data (delete). Separate actions mean users never lose data to tidy the screen, and the confirmation guards the one irreversible action (FR-08).
+     </p>
+     <p>
+      <strong>Alternatives:</strong> Only active and deleted would lose history. A separate soft delete duplicates archive. Blocking logging while suspended would turn away users who still log a little time.
+     </p>
+     <p>
+      <strong>Tradeoff:</strong> Analytics must skip suspended days and the interface needs controls for each action. Delete is irreversible, so it relies on the confirmation and on archive as the safe alternative.
+     </p>
+    </section>
+    <section class="doc-subsection" id="DD-32">
+     <h3>DD-32: A goal is a type (daily or weekly) plus one target in minutes</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-04, FR-05, FR-14, NFR-02, NFR-03
+     </p>
+     <p>
+      <strong>Decision:</strong> Every goal has a type and one positive target stored in minutes. It repeats until edited or archived (section 2.1).
+     </p>
+     <p>
+      <strong>Why:</strong> The dashboard wireframe shows one target per card, such as "Daily: 60 min" or "Weekly: 180 min". One type and one amount keeps setup to two choices (NFR-03) and gives progress calculations a single number per period. Minutes avoid unit ambiguity across reports (NFR-02).
+     </p>
+     <p>
+      <strong>Alternatives:</strong> A separate target per weekday is more flexible but has no place in the wireframe and complicates setup and calculations. Listed as a future extension. A daily and a weekly goal together conflicts with DD-33.
+     </p>
+     <p>
+      <strong>Tradeoff:</strong> "30 minutes on weekdays, 90 on weekends" can only be approximated with a weekly goal.
+     </p>
+    </section>
+    <section class="doc-subsection" id="DD-33">
+     <h3>DD-33: An activity has many goals over time but only one current goal</h3>
+     <p>
+      <strong>Related requirements:</strong> FR-01, FR-02, FR-04, FR-05, FR-14, FR-20
+     </p>
+     <p>
+      <strong>Decision:</strong> Activity and goal are separate records. Creating an activity requires its first goal (FIG-31), and only the goal with no end date is current.
+     </p>
+     <p>
+      <strong>Why:</strong> Separate records let the target change while the activity and its time records stay the same (DD-30). One current goal means one unambiguous target, matching the one-goal-per-card layout.
+     </p>
+     <p>
+      <strong>Alternatives:</strong> Merging activity and goal would force a new activity, and a lost link to past logs, whenever a goal changes. Several current goals make progress ambiguous.
+     </p>
+     <p>
+      <strong>Tradeoff:</strong> A daily and a weekly target cannot be tracked for the same activity at once.
+     </p>
+    </section>
+    <section class="doc-subsection" id="DD-34">
+     <h3>DD-34: Goal grouping is not supported in this version</h3>
+     <p>
+      <strong>Related requirements:</strong> NFR-03; system scope (Section 2, Overview &amp; Requirements)
+     </p>
+     <p>
+      <strong>Decision:</strong> Activities are a flat list. Grouping is a possible future extension.
+     </p>
+     <p>
+      <strong>Why:</strong> Grouping would change the data model, group-level analytics and the dashboard, and the wireframe shows a flat list. The scope covers activity creation, goal management, time recording and progress reporting. Therefore grouping is not needed for any requirement.
+     </p>
+     <p>
+      <strong>Alternatives:</strong> Full groups add entities, calculations and screens. A basic category label still needs interface for choosing and filtering. It is the most likely first extension.
+     </p>
+     <p>
+      <strong>Tradeoff:</strong> Users with many activities see one long list and no combined totals.
+     </p>
+    </section>
+   </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ </body>
+</html>

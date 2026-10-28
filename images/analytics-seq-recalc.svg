@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="640" viewBox="0 0 1060 640" role="img" aria-labelledby="title desc">
+  <title id="title">FIG-53 Recalculate after a time record changes</title>
+  <desc id="desc">UML sequence diagram. The user edits a time record. The user interface calls updateRecord on the Time Logging Service, which validates and saves the change and publishes a RecordChanged event to the Change Listener (C-56), then confirms the save. C-56 identifies the affected activity and calls invalidate on the Analytics Service (C-50), which removes every cached report for that activity from the report cache and notifies the user interface that reports changed. If a report view is open, the user interface requests the report again, which is generated as in FIG-52, and displays the updated totals and chart.</desc>
+  <defs>
+    <marker id="filled" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4f6079" /></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5" fill="none" stroke="#4f6079" stroke-width="1.4" /></marker>
+  </defs>
+  <rect width="1060" height="640" fill="#ffffff" />
+  <circle cx="70" cy="38" r="8" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="70,46 70,64" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="58,53 82,53" fill="none" stroke="#183454" stroke-width="2" />
+  <polyline points="60,76 70,64 80,76" fill="none" stroke="#183454" stroke-width="2" />
+  <text x="70" y="94" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">User</text>
+  <line x1="70" y1="100" x2="70" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="178.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="240" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">User</text>
+  <text x="240" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Interface</text>
+  <line x1="240" y1="80" x2="240" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="358.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="420" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-04</text>
+  <text x="420" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Time Logging</text>
+  <line x1="420" y1="80" x2="420" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="538.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="600" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-56</text>
+  <text x="600" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Change Listener</text>
+  <line x1="600" y1="80" x2="600" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="718.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="780" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">C-50</text>
+  <text x="780" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Analytics Service</text>
+  <line x1="780" y1="80" x2="780" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="898.0" y="30" width="124" height="50" rx="0" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2" />
+  <text x="960" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2c5d95">D3</text>
+  <text x="960" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Report Cache</text>
+  <line x1="960" y1="80" x2="960" y2="625" stroke="#65778f" stroke-width="1.4" stroke-dasharray="6 5" />
+  <rect x="414" y="157" width="12" height="118" rx="0" fill="#dfe8f5" stroke="#2c5d95" stroke-width="1.4" />
+  <polyline points="76,125 234,125" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="155.0" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">edit date / duration</text>
+  <polyline points="246,161 414,161" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="330.0" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">updateRecord(id, changes)</text>
+  <polyline points="426,189 460,189 460,207 428,207" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="468" y="202" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">validate and save</text>
+  <polyline points="426,241 594,241" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#open)" />
+  <text x="510.0" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">RecordChanged(event)</text>
+  <polyline points="414,277 246,277" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="330.0" y="271" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">save confirmed</text>
+  <rect x="594" y="299" width="12" height="82" rx="0" fill="#dfe8f5" stroke="#2c5d95" stroke-width="1.4" />
+  <polyline points="606,305 640,305 640,323 608,323" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="648" y="318" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">identify affected activity</text>
+  <polyline points="606,347 774,347" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="690.0" y="341" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">invalidate(activity)</text>
+  <rect x="774" y="377" width="12" height="48" rx="0" fill="#dfe8f5" stroke="#2c5d95" stroke-width="1.4" />
+  <polyline points="786,383 954,383" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="870.0" y="377" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">removeAll(activity)</text>
+  <polyline points="774,419 246,419" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#open)" />
+  <text x="510.0" y="413" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">reportsChanged(activity)</text>
+  <polyline points="246,481 774,481" fill="none" stroke="#4f6079" stroke-width="1.8" marker-end="url(#filled)" />
+  <text x="510.0" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">getReport(req)</text>
+  <rect x="740" y="495" width="260" height="36" rx="0" fill="#ffffff" stroke="#183454" stroke-width="1.5" />
+  <polygon points="740,495 780,495 780,507 774,513 740,513" fill="#ffffff" stroke="#183454" stroke-width="1.5" />
+  <text x="746" y="509" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#183454">ref</text>
+  <text x="880.0" y="519" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#24364e">Generate report (FIG-52)</text>
+  <polyline points="774,557 246,557" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="510.0" y="551" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">updated ProgressReport</text>
+  <polyline points="234,587 76,587" fill="none" stroke="#4f6079" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#open)" />
+  <text x="155.0" y="581" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#24364e" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">updated totals and chart</text>
+  <rect x="30" y="441" width="1015" height="162" rx="0" fill="none" stroke="#183454" stroke-width="1.5" />
+  <polygon points="30,441 66,441 66,455 58,463 30,463" fill="#ffffff" stroke="#183454" stroke-width="1.5" />
+  <text x="36" y="457" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#183454">opt</text>
+  <text x="74" y="457" text-anchor="start" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#183454" font-style="italic">[a report view is open]</text>
+</svg>

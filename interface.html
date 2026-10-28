@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Interface | TEMPO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/metro.png" />
+ </head>
+ <body>
+  <header>
+   <nav class="navbar navbar-expand-lg navbar-dark site-nav" aria-label="Main navigation">
+    <div class="container-fluid px-lg-4"><a class="navbar-brand" href="index.html">TEMPO</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavigation" aria-controls="siteNavigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+     <div class="collapse navbar-collapse" id="siteNavigation">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+       <li class="nav-item"><a class="nav-link" href="architecture.html">Architecture</a></li>
+       <li class="nav-item"><a class="nav-link" href="goals.html">Activities &amp; Goals</a></li>
+       <li class="nav-item"><a class="nav-link" href="logging.html">Time Logging &amp; Storage</a></li>
+       <li class="nav-item"><a class="nav-link" href="analytics.html">Progress &amp; Analytics</a></li>
+       <li class="nav-item"><a class="nav-link active" aria-current="page" href="interface.html"> User Interface </a></li>
+      </ul>
+     </div>
+    </div>
+   </nav>
+  </header>
+  <main class="container docs-content py-4 py-md-5">
+   <div class="page-heading">
+    <h1 class="display-5 mb-3">User Interface Design</h1>
+    <p class="page-intro mb-0"> This page presents the proposed user interface for TEMPO, including wireframes of its main pages and modal dialogs. It describes the interface components, navigation structure, user interactions, and design decisions, with an emphasis on usability and accessibility. </p>
+   </div>
+   <section class="doc-section" id="interface-overview">
+    <h2>1. Interface Overview</h2>
+    <p> TEMPO's user interface is designed to provide convenient access to activity management, time logging, and progress tracking. The interface organizes these features into separate pages connected by a shared navigation sidebar, with modal dialogs for common actions such as creating activities and recording time. </p>
+    <section class="doc-subsection" id="design-goals">
+     <h3>1.1 Design Goals</h3>
+     <p> The interface is designed with simplicity, efficiency, consistency, and accessibility in mind. Its primary design goals include: </p>
+     <ul>
+      <li><strong>Simplicity:</strong> Keep pages organized and avoid unnecessary complexity or clutter. </li>
+      <li><strong>Efficiency:</strong> Minimize the steps required for common actions, particularly logging time and managing activities. </li>
+      <li><strong>Consistency:</strong> Maintain a consistent layout, navigation structure, and set of controls throughout the application. </li>
+      <li><strong>Clarity:</strong> Present activity progress and statistics using clearly labeled numerical values, progress bars, and graphs. </li>
+      <li><strong>Accessibility:</strong> Support keyboard navigation, readable text, descriptive labels, and text-based alternatives to visual information. </li>
+     </ul>
+    </section>
+    <section class="doc-subsection" id="navigation-structure">
+     <h3>1.2 Navigation Structure</h3>
+     <p> TEMPO uses a persistent sidebar to provide navigation between the application's main pages, along with shortcuts for active activities. The sidebar remains consistent throughout the application. </p>
+     <h4>Key Components</h4>
+     <ul>
+      <li><strong>TEMPO</strong> and <strong>Dashboard:</strong> Navigate to the application's main page, which displays current activity progress and recent time records. </li>
+      <li><strong>Reports &amp; Statistics:</strong> Opens the reporting page, where users can review historical progress and statistics. </li>
+      <li><strong>Log Time:</strong> Opens the time logging modal from any page. </li>
+      <li><strong>Activities:</strong> Displays shortcuts to five frequently accessed activities. Selecting an activity opens its individual details page. </li>
+      <li><strong>View All Activities:</strong> Opens the complete activity list, including active, suspended, and archived activities. </li>
+      <li><strong>Create New Activity:</strong> Opens the activity creation modal. </li>
+     </ul>
+     <h4>Navigation Behavior</h4>
+     <ul>
+      <li> The sidebar remains visible when navigating between the application's main pages. </li>
+      <li> Activity shortcuts provide direct access to individual activity details without returning to the Dashboard. </li>
+      <li> Activities not displayed in the sidebar remain accessible through the All Activities page. </li>
+      <li> The Log Time and Create New Activity shortcuts open modal dialogs without navigating away from the current page. </li>
+     </ul>
+    </section>
+   </section>
+   <section class="doc-section" id="wireframes">
+    <h2>2. Page Designs and Wireframes</h2>
+    <p> The following wireframes illustrate the proposed layout and functionality of TEMPO's main pages and modal dialogs. Each design identifies the primary interface components and describes how users interact with them. </p>
+    <section class="doc-subsection" id="primary-pages">
+     <h3>2.1 Primary Pages</h3>
+     <p> TEMPO's primary pages include the Dashboard, All Activities, Individual Activity Details, All Time Logs, and Reports &amp; Statistics. These pages allow users to monitor their progress, manage activities, review saved time records, and analyze historical performance. </p>
+     <section class="doc-subsection" id="dashboard">
+      <h4>2.1.1 Dashboard</h4>
+      <p> The Dashboard serves as TEMPO's main landing page, providing an overview of the user's activities, current progress, and recent time records. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-02"> FR-02</a>, <a href="index.html#FR-14">FR-14</a>, <a href="index.html#FR-18">FR-18</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Date and Time:</strong> Displays the current date and time in the upper-right corner. </li>
+       <li><strong>Progress Summary:</strong> Displays four statistics: <ul>
+         <li>Total time logged today.</li>
+         <li>Total time logged during the current week.</li>
+         <li>Number of daily goals achieved.</li>
+         <li>Number of weekly goals achieved.</li>
+        </ul>
+       </li>
+       <li><strong>Activity Cards:</strong> Display active activities and their current daily or weekly goals. Each card includes the activity name, target duration, progress bar, recorded time, remaining time, and a logging button. Suspended and archived activities remain accessible through the All Activities page, which displays their statuses and current goals. </li>
+       <li><strong>Recent Logs:</strong> Displays the most recent time records, including the activity, date, duration, notes, and an edit option. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li>Click an activity to open its individual details page.</li>
+       <li> Click <strong>+ Log Time</strong> (present on the activity cards) to open the logging modal with the corresponding activity selected. </li>
+       <li> Click <strong>View All Activities</strong> to access the complete activity list. </li>
+       <li> Click <strong>+ Log Time</strong> (above the Recent Logs section) to open the logging modal with no activity selected. </li>
+       <li> Click <strong>View All Time Logs</strong> to access the complete time record history. </li>
+       <li>Click a time record's notes field to view its details, displaying the activity, date, duration, and full notes.</li>
+       <li>Click an edit icon to modify an existing time record.</li>
+      </ul>
+      <figure id="FIG-03" class="my-4"><img src="images/dashboard.png" alt="TEMPO Dashboard wireframe showing progress summaries, activity cards, and recent time records." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-03: TEMPO Dashboard Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="all-activities">
+      <h4>2.1.2 All Activities</h4>
+      <p> The All Activities page provides a complete list of the user's activities, including active, suspended, and archived activities. Users can browse and manage their activities from this page. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-02"> FR-02</a>, <a href="index.html#FR-06">FR-06</a>, <a href="index.html#FR-07">FR-07</a>, <a href="index.html#FR-19">FR-19</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Search Bar:</strong> Allows users to search for activities by name. </li>
+       <li><strong>Status Filter:</strong> Allows users to display all activities or filter by active, suspended, or archived status. </li>
+       <li><strong>Activity Table:</strong> Displays the user's activities with the following information: <ul>
+         <li>Activity name.</li>
+         <li>Current daily or weekly target.</li>
+         <li>Date of the most recent time record.</li>
+         <li>Activity status.</li>
+         <li>Edit button.</li>
+        </ul>
+       </li>
+       <li><strong>Sorting Controls:</strong> Allow users to organize activities by most recent time record. </li>
+       <li><strong>Create New Activity:</strong> Opens the activity creation form. </li>
+       <li><strong>+ Log Time:</strong> Opens the time logging modal. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Enter text in the search bar to find activities by name. </li>
+       <li> Select a status to display active, suspended, archived, or all activities. </li>
+       <li> Click a column's sorting control to change the order of the displayed activities. </li>
+       <li> Click an activity name to open its individual details page. </li>
+       <li> Click the <strong>+</strong> button beside the activity name to log time for that specific activity. </li>
+       <li> Click an edit icon to open the activity editing modal. </li>
+       <li> Click <strong>+ Create New Activity</strong> to open the activity creation modal. </li>
+       <li> Click <strong>+ Log Time</strong> to open the time logging modal. </li>
+      </ul>
+      <figure id="FIG-04" class="my-4"><img src="images/all-activities.png" alt="TEMPO All Activities wireframe showing a searchable and sortable table of activities with status filters." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-04: TEMPO All Activities Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="activity-details">
+      <h4>2.1.3 Individual Activity</h4>
+      <p> The Individual Activity (or just Activity) page provides a detailed view of a selected activity, including its current goal, historical progress, statistics, and recent time records. Users can also manage the activity and its associated time records. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-05"> FR-05</a>, <a href="index.html#FR-13">FR-13</a>, <a href="index.html#FR-14">FR-14</a>, <a href="index.html#FR-15">FR-15</a>, <a href="index.html#FR-16">FR-16</a>, <a href="index.html#FR-20">FR-20</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Activity Information:</strong> Displays the activity name and current status. </li>
+       <li><strong>Current Progress:</strong> Displays the current daily or weekly target, time logged, remaining time, and a progress bar. </li>
+       <li><strong>Statistics:</strong> Displays the total time logged, average daily time, and number and percentage of targets achieved. </li>
+       <li><strong>Progress Graph:</strong> Displays historical progress using a bar or line graph. Users can view recorded time or the percentage of the target achieved over a selected date range. </li>
+       <li><strong>Recent Logs:</strong> Displays the five most recent time records for the activity, including dates, durations, notes, and editing controls. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Click <strong>Edit Activity</strong> to open the activity editing modal with this specific activity pre-selected. </li>
+       <li> Click <strong>+ Log Time</strong> to open the logging modal with the current activity automatically selected. </li>
+       <li> Use the graph controls to switch between bar and line graphs, select a reporting period, and view time or target progress. </li>
+       <li> Click <strong>View All Reading Time Logs</strong> to open the All Time Logs page filtered to the selected activity. </li>
+       <li>Click a time record's notes field to view its details, displaying the activity, date, duration, and full notes.</li>
+       <li> Click an edit icon beside a time record to open the Edit Log modal. </li>
+      </ul>
+      <figure id="FIG-05" class="my-4"><img src="images/activity-details.png" alt="TEMPO Individual Activity wireframe showing Reading's current progress, statistics, historical graph, and recent time logs." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-05: TEMPO Individual Activity Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="all-logs">
+      <h4>2.1.4 All Time Logs</h4>
+      <p> The All Time Logs page displays the user's complete history of recorded time entries across all activities. Users can browse, filter, and manage their saved time records. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-10"> FR-10</a>, <a href="index.html#FR-11">FR-11</a>, <a href="index.html#FR-12">FR-12</a>, <a href="index.html#FR-13">FR-13</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Activity Filter:</strong> Allows users to display time records for all activities or a specific activity. </li>
+       <li><strong>Date Filter:</strong> Allows users to select a date or date range to narrow the displayed records. </li>
+       <li><strong>Time Log Table:</strong> Displays saved time records with the following information: <ul>
+         <li>Activity name.</li>
+         <li>Date and time of the recorded session.</li>
+         <li>Duration of the session.</li>
+         <li>Optional notes.</li>
+         <li>Edit button.</li>
+        </ul>
+       </li>
+       <li><strong>Pagination Controls:</strong> Allow users to navigate between pages of time records. </li>
+       <li><strong>Scroll Wheel:</strong> Allow users to scroll through currently selected page of time records. </li>
+       <li><strong>Log Time Button:</strong> Opens the time logging modal to create a new record. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Select an activity from the dropdown to display only its associated time records. </li>
+       <li> Use the date filter to display records from a selected date or date range. </li>
+       <li> Scroll through the displayed time records and use the pagination controls to view additional entries. </li>
+       <li> Click an activity name to open its individual details page. </li>
+       <li>Click a time record's notes field to view its details, displaying the activity, date, duration, and full notes.</li>
+       <li> Click an edit icon to open the Edit Log modal with the selected record's existing information. </li>
+       <li> Click <strong>+ Log Time</strong> to open the time logging modal and create a new record. </li>
+      </ul>
+      <figure id="FIG-06" class="my-4"><img src="images/all-logs.png" alt="TEMPO All Time Logs wireframe showing time records, activity and date filters, editing controls, and pagination." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-06: TEMPO All Time Logs Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="reports-statistics">
+      <h4>2.1.5 Reports &amp; Statistics</h4>
+      <p> The Reports &amp; Statistics page provides an overview of the user's progress across activities, including time totals, averages, historical trends, and future projections. Users can filter reports by activity and date range to examine their progress in greater detail. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-14">FR-14</a>, <a href="index.html#FR-15">FR-15</a>, <a href="index.html#FR-16">FR-16</a>, <a href="index.html#FR-17">FR-17</a>, <a href="index.html#FR-18">FR-18</a>, <a href="index.html#FR-20">FR-20</a>, <a href="index.html#NFR-05">NFR-05</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Current Progress:</strong> Displays four summary statistics for the selected activities and date range: <ul>
+         <li>Total time logged.</li>
+         <li>Average daily time logged.</li>
+         <li>Number of sessions logged.</li>
+         <li>Goal adherence rate.</li>
+        </ul>
+       </li>
+       <li><strong>Progress Graph:</strong> Displays historical progress using a bar or line graph. Users can compare recorded time against applicable goals or view adherence percentages over a selected date range. </li>
+       <li><strong>Activity Statistics:</strong> Displays a table comparing activities using the following information: <ul>
+         <li>Activity name.</li>
+         <li>Total time logged.</li>
+         <li>Current daily or weekly target.</li>
+         <li>Average time logged.</li>
+         <li>Goal adherence rate.</li>
+        </ul>
+       </li>
+       <li><strong>Future Projections:</strong> Displays an estimated cumulative time total for a selected activity and future date. A line graph illustrates historical time records with a solid line and estimated future progress with a dashed line. Current and projected totals are displayed alongside the graph. The estimate is based on the activity's recent daily average, as defined by the analytics subsystem. </li>
+       <li><strong>Filtering Controls:</strong> Allow users to select activities, activity statuses, and date ranges for the different reporting sections. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Select an activity or all activities and a date range to update the Current Progress statistics. </li>
+       <li> Use the graph controls to select activities, switch between recorded time and adherence percentages, choose a bar or line graph, and adjust the date range. </li>
+       <li> Filter the Activity Statistics table by activity status and reporting period. </li>
+       <li> Select an activity and future date in the Future Projections section to display an estimated cumulative time total and projection graph. </li>
+       <li> View historical progress using the goals that were applicable during each reporting period, even if those goals have since been revised. </li>
+       <li> Reporting sections update independently based on their selected filters. </li>
+       <li> If an activity has insufficient recorded history, the Future Projections section displays a message explaining that an estimate is not yet available. </li>
+      </ul>
+      <figure id="FIG-11" class="my-4"><img src="images/reports-stats.png" alt="TEMPO Reports and Statistics wireframe showing summary statistics, progress graphs, activity comparisons, and future projections." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-11: TEMPO Reports &amp; Statistics Wireframe </figcaption>
+      </figure>
+     </section>
+    </section>
+    <section class="doc-subsection" id="modal-dialogs">
+     <h3>2.2 Modal Dialogs</h3>
+     <p> Modal dialogs allow users to create, view, edit, and delete activities and time records without navigating away from the current page. </p>
+     <section class="doc-subsection" id="log-time-modal">
+      <h4>2.2.1 Log Time Modal</h4>
+      <p> The Log Time modal allows users to record time spent on an activity without navigating away from their current page. It can be accessed through the sidebar or logging buttons associated with individual activities. Clicking a logging button associated with a specific activity automatically selects that activity in the modal. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-09"> FR-09</a>, <a href="index.html#FR-10">FR-10</a>, <a href="index.html#FR-18">FR-18</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Activity Selection:</strong> A dropdown menu for selecting the activity associated with the time record. Will only display active or suspended activities. Archived activities cannot receive new time records. When opened from an individual activity, that activity is automatically selected. </li>
+       <li><strong>Date and Time:</strong> A date and time picker that defaults to the present. </li>
+       <li><strong>Duration:</strong> A numerical input field with a dropdown for selecting minutes or hours. </li>
+       <li><strong>Notes:</strong> An optional text field for adding information about the recorded session. </li>
+       <li><strong>Action Buttons:</strong> Save, Cancel, and Close controls for submitting or dismissing the form. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Select an activity from the dropdown menu. When opened from an individual activity, that activity is automatically selected. </li>
+       <li> Select the date and time of the session using the date and time picker, or leave untouched for present. </li>
+       <li> Enter the session duration and select minutes or hours. </li>
+       <li> Optionally enter notes describing the session. </li>
+       <li> Click <strong>Save</strong> to validate and save the time record. The modal closes and affected progress indicators and statistics are updated. </li>
+       <li> Click <strong>Cancel</strong> or the close button to dismiss the modal without saving. </li>
+      </ul>
+      <figure id="FIG-07" class="my-4"><img src="images/log-time.png" alt="TEMPO Log Time modal wireframe showing activity selection, date and time, duration, notes, and Save and Cancel buttons." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-07: TEMPO Log Time Modal Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="edit-log-modal">
+      <h4>2.2.2 Edit Log Modal</h4>
+      <p> The Edit Log modal allows users to modify or delete an existing time record. The form displays the record's saved information, which users can update without navigating away from the current page. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-11">FR-11</a>, <a href="index.html#FR-12">FR-12</a>, <a href="index.html#FR-18">FR-18</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Activity Name:</strong> Displays the activity associated with the time record. This field cannot be changed after the record has been saved. </li>
+       <li><strong>Date and Time:</strong> Displays the saved date and time, which can be modified using the date and time picker. </li>
+       <li><strong>Duration:</strong> Displays the saved duration in an editable numerical field, with a dropdown for selecting minutes or hours. </li>
+       <li><strong>Notes:</strong> Displays any existing notes in an editable text field. </li>
+       <li><strong>Action Buttons:</strong> Save, Delete, Cancel, and Close controls for updating, deleting, or dismissing the record. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Modify the date, time, duration, or notes associated with the selected record. </li>
+       <li> The associated activity is displayed as a read-only field and cannot be reassigned to another activity. </li>
+       <li> Click <strong>Save</strong> to validate and save the changes. Affected progress indicators and statistics are recalculated. </li>
+       <li> Click <strong>Delete</strong> to request confirmation before permanently removing the time record. </li>
+       <li> Click <strong>Cancel</strong> or the close button to dismiss the modal without saving changes. </li>
+      </ul>
+      <figure id="FIG-08" class="my-4"><img src="images/edit-log.png" alt="TEMPO Edit Log modal wireframe showing a read-only activity name, editable date and time, duration, notes, and Save, Delete, and Cancel buttons." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-08: TEMPO Edit Log Modal Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="notes-modal">
+      <h4>2.2.3 Notes Modal</h4>
+      <p> The Notes modal allows users to view the complete notes associated with an individual time record without opening the editing interface. </p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-10">FR-10</a>, <a href="index.html#FR-13">FR-13</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Record Information:</strong> Displays the activity name, recorded duration, and date and time of the selected session. </li>
+       <li><strong>Notes:</strong> Displays the complete notes associated with the selected time record in a read-only text area. </li>
+       <li><strong>Close Button:</strong> Allows users to dismiss the modal and return to the previous page. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Click the notes associated with a time record to open the Notes modal. </li>
+       <li> Read the complete notes without modifying the saved record. </li>
+       <li> Click the close button to dismiss the modal and return to the previous page. </li>
+      </ul>
+      <figure id="FIG-09" class="my-4"><img src="images/notes.png" alt="TEMPO Notes modal showing the activity name, session duration, date and time, and read-only notes." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-09: TEMPO Notes Modal Wireframe </figcaption>
+      </figure>
+     </section>
+     <section class="doc-subsection" id="edit-activity-modal">
+      <h4>2.2.4 Edit Activity Modal</h4>
+      <p> The Edit Activity modal allows users to modify an existing activity's name and goal, as well as manage its current status or delete the activity. The form displays the activity's existing information and can be accessed without navigating away from the current page. </p>
+      <p>This modal doubles as the form for creating new activities. When creating a new activity, the modal will have a different title and the fields will not be pre-filled. The status-changing buttons will also not be available.</p>
+      <p><strong>Related requirements: </strong><a href="index.html#FR-01">FR-01</a>, <a href="index.html#FR-03">FR-03</a>, <a href="index.html#FR-04">FR-04</a>, <a href="index.html#FR-05">FR-05</a>, <a href="index.html#FR-06">FR-06</a>, <a href="index.html#FR-07">FR-07</a>, <a href="index.html#FR-08">FR-08</a>, <a href="index.html#FR-19">FR-19</a>, <a href="index.html#FR-20">FR-20</a></p>
+      <h5>Key Components</h5>
+      <ul>
+       <li><strong>Activity Name:</strong> An editable text field containing the activity's current name. </li>
+       <li><strong>Target:</strong> A numerical input field for the target duration, along with dropdown menus for selecting minutes or hours and a daily or weekly goal interval. </li>
+       <li><strong>Action Buttons:</strong> Save, Suspend, Archive, Delete, Cancel, and Close controls. The available status actions depend on the activity's current status. </li>
+      </ul>
+      <h5>User Interactions</h5>
+      <ul>
+       <li> Modify the activity name or its current goal's target duration and interval. </li>
+       <li> Click <strong>Save</strong> to validate and save changes. Changes to the goal create a new goal version while preserving previous versions and historical comparisons. </li>
+       <li> Click <strong>Suspend</strong> to suspend the activity and its current goal. Suspended activities display a <strong>Resume</strong> button instead. </li>
+       <li> Click <strong>Archive</strong> to archive the activity while retaining its goals and time records. Archived activities can be restored using a <strong>Restore</strong> button. </li>
+       <li> Click <strong>Delete</strong> to request confirmation before permanently deleting the activity, its goals, and associated time records. </li>
+       <li> Click <strong>Cancel</strong> or the close button to dismiss the modal without saving changes. </li>
+      </ul>
+      <figure id="FIG-10" class="mt-4 mb-0"><img src="images/edit-activity.png" alt="TEMPO Edit Activity modal showing the activity name, target duration, goal interval, and Save, Suspend, Archive, Delete, and Cancel buttons." class="img-fluid border rounded">
+       <figcaption class="text-muted mt-2"> FIG-10: TEMPO Edit Activity Modal Wireframe </figcaption>
+      </figure>
+     </section>
+    </section>
+   </section>
+   <section class="doc-section" id="interaction-design">
+    <h2>3. Interaction Design</h2>
+    <p> TEMPO's interface provides controls for managing activities, recording time, and reviewing progress. User interactions are designed to be straightforward, with input validation, feedback messages, and confirmation dialogs to help prevent errors and unintended changes. </p>
+    <section class="doc-subsection" id="input-validation">
+     <h3>3.1 Forms and Input Validation</h3>
+     <p> TEMPO validates user input before saving activities, goals, or time records. Forms use clearly labeled fields and display error messages when required information is missing or invalid. </p>
+     <ul>
+      <li><strong>Activity Creation:</strong> Requires a nonempty activity name and a valid daily or weekly goal. </li>
+      <li><strong>Goal Management:</strong> Requires a positive target duration and a selected daily or weekly interval. </li>
+      <li><strong>Time Logging:</strong> Requires an activity, a valid date, and a positive duration. Users can enter durations in minutes or hours. </li>
+      <li><strong>Editing:</strong> Forms display existing values when editing saved information. The activity associated with an existing time record cannot be changed. </li>
+      <li><strong>Invalid Input:</strong> The form remains open and displays an error message identifying the field that needs correction. </li>
+     </ul>
+    </section>
+    <section class="doc-subsection" id="user-feedback">
+     <h3>3.2 User Feedback and Confirmation</h3>
+     <p> The interface provides feedback when users create, modify, or delete information. Progress indicators and statistics are updated to reflect changes to saved time records. </p>
+     <ul>
+      <li><strong>Successful Actions:</strong> Saving an activity, goal, or time record displays a confirmation message and closes the corresponding modal. </li>
+      <li><strong>Progress Updates:</strong> Creating, editing, or deleting time records updates affected progress bars, totals, averages, and charts. </li>
+      <li><strong>Deletion Confirmation:</strong> Deleting an activity or time record requires confirmation before the information is permanently removed. </li>
+      <li><strong>Canceling Actions:</strong> Cancel and Close buttons dismiss modal dialogs without saving unsaved changes. </li>
+      <li><strong>Error Feedback:</strong> If an operation fails, the interface displays an error message rather than indicating that the action was successful. </li>
+     </ul>
+    </section>
+    <section class="doc-subsection" id="goal-states">
+     <h3>3.3 Activity and Goal States</h3>
+     <p> TEMPO supports active, suspended, and archived activities. The interface uses "Paused" as the user-facing label for the SUSPENDED status. Each activity's status also applies to its current goal. </p>
+     <ul>
+      <li><strong>Active:</strong> Activities appear in the Dashboard's progress section and can receive new time records. </li>
+      <li><strong>Paused:</strong> Activities are temporarily suspended while retaining their goals and recorded history. Users can still log time for paused activities, but suspended days do not count toward goal completion. Activities can be resumed through the editing modal. </li>
+      <li><strong>Archived:</strong> Activities remain accessible through the All Activities page but cannot receive new time records or be edited until restored. Their goals and historical records are preserved. </li>
+      <li><strong>Goal Revisions:</strong> Changing an activity's target duration or interval creates a new goal version. Previous versions are retained so historical progress comparisons remain unchanged. </li>
+     </ul>
+    </section>
+   </section>
+   <section class="doc-section" id="design-rationale">
+    <h2>4. Design Rationale</h2>
+    <p> The following design decisions explain the reasoning behind TEMPO's interface layout and interactions, including how these choices support the system requirements. </p>
+    <section class="doc-subsection" id="dd-dashboard">
+     <h3>DD-60: Dashboard-Centered Design</h3>
+     <p><strong>Related requirements: </strong><a href="index.html#FR-02">FR-02</a>, <a href="index.html#FR-14">FR-14</a>, <a href="index.html#NFR-03">NFR-03</a></p>
+     <p> TEMPO uses a dashboard as its main landing page, displaying current goal progress, time totals, and recent time records. Users can also record time directly from the activity cards. This reduces the need to navigate between pages for common actions. The dashboard only displays recent records and current progress to avoid overcrowding the interface, while more detailed information remains accessible through other pages. </p>
+    </section>
+    <section class="doc-subsection" id="dd-sidebar">
+     <h3>DD-61: Persistent Sidebar Navigation</h3>
+     <p><strong>Related requirements: </strong><a href="index.html#FR-02">FR-02</a>, <a href="index.html#FR-13">FR-13</a>, <a href="index.html#NFR-03">NFR-03</a></p>
+     <p> A persistent sidebar provides navigation between the application's main pages and direct access to frequently used activities. The sidebar displays a limited number of activity shortcuts to prevent it from becoming excessively long. Users with additional activities must access them through the All Activities page, but this keeps the navigation organized and consistent. </p>
+    </section>
+    <section class="doc-subsection" id="dd-modals">
+     <h3>DD-62: Modal-Based Data Entry</h3>
+     <p><strong>Related requirements: </strong><a href="index.html#FR-01">FR-01</a>, <a href="index.html#FR-04">FR-04</a>, <a href="index.html#FR-09">FR-09</a>, <a href="index.html#FR-11">FR-11</a>, <a href="index.html#NFR-03">NFR-03</a></p>
+     <p> TEMPO uses modal dialogs for creating and editing activities and recording or modifying time entries. These dialogs allow users to complete common actions without leaving their current page. Modals have limited space compared with full pages, but TEMPO's data entry forms are relatively simple and do not require extensive controls. </p>
+    </section>
+    <section class="doc-subsection" id="dd-reporting">
+     <h3>DD-63: Separate Overview and Detailed Reporting</h3>
+     <p><strong>Related requirements: </strong><a href="index.html#FR-13">FR-13</a>, <a href="index.html#FR-14">FR-14</a>, <a href="index.html#FR-15">FR-15</a>, <a href="index.html#FR-16">FR-16</a>, <a href="index.html#NFR-05">NFR-05</a></p>
+     <p> TEMPO separates current progress summaries from detailed historical reporting. The Dashboard provides an overview of current goals, individual activity pages display activity-specific progress and statistics, and the Reports &amp; Statistics page provides broader comparisons and historical trends. This organization prevents the Dashboard from becoming cluttered, although users must navigate to separate pages to access more detailed reports. </p>
+    </section>
+   </section>
+   <section class="doc-section" id="usability-accessibility">
+    <h2>5. Usability and Accessibility</h2>
+    <p> TEMPO's interface is designed to be straightforward and consistent, with shared navigation, clearly labeled controls, and quick access to frequently used actions. These design choices support NFR-03, which requires first-time users to independently create an activity, assign a goal, and record time. </p>
+    <p> To support NFR-04, navigation menus, forms, and activity management controls will be accessible through keyboard input. Form fields will have descriptive labels, and progress bars and graphs will be accompanied by numerical values or written summaries so that information is not conveyed through visuals alone. </p>
+    <p> Modal dialogs support keyboard navigation and maintain focus within the dialog while it is open. When a modal closes, keyboard focus returns to the control that opened it. </p>
+   </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ </body>
+</html>

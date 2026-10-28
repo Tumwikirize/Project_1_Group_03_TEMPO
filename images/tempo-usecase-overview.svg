@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="455" viewBox="0 0 1100 455" role="img" aria-labelledby="title desc">
+  <title id="title">TEMPO UML Use-Case Diagram</title>
+  <desc id="desc">The individual user participates in the principal TEMPO use cases: manage activities, set recurring goals, record time manually, review progress, and view averages and projections.</desc>
+  <rect width="1100" height="455" fill="#ffffff" />
+  <rect x="320" y="31" width="745" height="394" rx="3" fill="none" stroke="#183454" stroke-width="2.2" />
+  <text x="692" y="59" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#183454">TEMPO system boundary</text>
+  <circle cx="138" cy="159" r="17" fill="none" stroke="#193454" stroke-width="3" />
+  <line x1="138" y1="176" x2="138" y2="238" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="98" y1="204" x2="178" y2="204" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="138" y1="238" x2="103" y2="275" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <line x1="138" y1="238" x2="173" y2="275" stroke="#193454" stroke-width="3" stroke-linecap="round" />
+  <text x="138" y="303" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#24364e">Individual user</text>
+  <line x1="177" y1="208" x2="506" y2="107" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="736" cy="107" rx="230" ry="25" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="736" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Manage activities</text>
+  <line x1="177" y1="208" x2="506" y2="178" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="736" cy="178" rx="230" ry="25" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="736" y="184" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Set recurring goals</text>
+  <line x1="177" y1="208" x2="506" y2="249" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="736" cy="249" rx="230" ry="25" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="736" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Record time manually</text>
+  <line x1="177" y1="208" x2="506" y2="320" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="736" cy="320" rx="230" ry="25" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="736" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">Review progress</text>
+  <line x1="177" y1="208" x2="506" y2="391" stroke="#65778f" stroke-width="2" />
+  <ellipse cx="736" cy="391" rx="230" ry="25" fill="#f3f7fc" stroke="#2c5d95" stroke-width="2.2" />
+  <text x="736" y="397" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#24364e">View statistics and projections</text>
+</svg>
